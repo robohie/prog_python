@@ -104,31 +104,47 @@ class Amplificateur:
         return ((v_amp / v_in) * np.sqrt(2) - 1) * r1
 
 class FiltrePasseBas:
-    def __init__(self, c:float, fc:float):
+    def __init__(self, c: float, fc: float):
         """
-
-        :param c: la capacité du filtre1 passe-bas (F)
+        :param c: la capacité du filtre passe-bas (F)
         :param fc: la fréquence de coupure (Hz)
         """
-        self.r = 1 / (2 * fc * np.pi * c)    # la résistance du filtre1
+        self.r = 1 / (2 * fc * np.pi * c)    # la résistance du filtre
         self.tau = self.r * c                # tau = R.C
         self.fc = fc
 
     def get_output(self, input_signal, temps):
         """
-        Nous utilisons la méthode de Euler pour
-        approximer la sortie
+        Filtre passe-bas d'ordre 1
+        Utilise la solution analytique discrète :
+        y[n] = y[n-1] * exp(-dt / tau) + x[n] * (1 - exp(-dt / tau))
+
+        :param input_signal: tableau des échantillons d'entrée
+        :param temps: tableau des instants correspondants aux échantillons
+        :return: tableau des échantillons de sortie filtrée
         """
-        x = np.asarray(input_signal)
-        x_t = interp1d(temps, x, kind="linear", fill_value="extrapolate")
+        x = np.asarray(input_signal, dtype=float)
+        t = np.asarray(temps, dtype=float)
 
-        def second_membre(v, ngonga):
-            return (x_t(ngonga) - v) / self.tau
+        if x.shape != t.shape:
+            raise ValueError("input_signal et temps doivent avoir la même forme")
 
-        y0 = 0
-        y = odeint(second_membre, y0, t)
-        return y.flatten()
+        n = x.size
+        if n == 0:
+            return np.array([], dtype=float)
 
+        y = np.empty_like(x)
+        y[0] = 0.0  # la condition initiale
+
+        for i in range(1, n):
+            dt = t[i] - t[i - 1]
+            if dt <= 0:
+                raise ValueError("les valeurs de 'temps' doivent être strictement croissantes")
+            alpha = np.exp(-dt / self.tau)
+            y[i] = y[i - 1] * alpha + x[i] * (1.0 - alpha)
+
+        return y
+        
 class IdealFiltrePB:
     """Implémentation d'un filtre passe-bas idéal"""
     def __init__(self, fc:float):
