@@ -13,8 +13,6 @@
 # ===================================================================
 
 import human_signal as h
-from scipy.integrate import odeint
-from scipy.interpolate import interp1d
 import numpy as np
 
 def bruit(x, amp_min=0.01, amp_max=0.1, nbre_harmonique=10):
