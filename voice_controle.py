@@ -1,14 +1,15 @@
 # TRAVAIL DE FIN DE CYCLE (TFC) / Simulation avec Python
 # Sujet de TFC : système de contrôle d'un moteur DC par la voix
 # Bosolindo Edhiengene Roger L3 Génie électrique
+# Faculté polytechnique de l'université de Kinshasa
 # email : rogerbosolinndo34@gmail.com
 # Téléphone : +243 822 460 896
 # ===================================================================
 # Ce module contient les classes MicroDynamique, MicroStatique,
-# Amplificateur, FiltrePasseBas et probablement FiltrePasseBande qui
+# Amplificateur, FiltrePasseBas et FiltrePasseBande qui
 # sont respectivement les implémentations quasi réelles des micro-
 # phones dynamique et statique, de l'amplificateur en configuration
-# non inverseuse, du filtre1 passe-bas d'ordre 1 et du filtre2 passe-
+# non inverseuse, du filtre passe-bas d'ordre 1 et du filtre passe-
 # bande.
 # ===================================================================
 
@@ -25,7 +26,7 @@ def bruit(x, amp_min=0.01, amp_max=0.1, nbre_harmonique=10):
     """
     x = np.asarray(x)
     # Nous prénons une fréquence fondamentale aléatoire
-    # ainsi que des amplitudes aléatoires entre amp_min
+    # ainsi que des amps aléatoires entre amp_min
     # et amp_max
     f = np.random.uniform(2000, 5000)
     amplitudes = np.random.uniform(amp_min, amp_max, size=(nbre_harmonique, ))
@@ -41,7 +42,7 @@ class MicroDynamique(h.TensionVoice):
         :param r: résistance du microphone dynamique
         :param f: fréquence du signal de sortie
         :param amplitudes: les amplitudes du signal de sorties
-                           ce sont des fonctions.
+                           (ce sont des fonctions).
         """
         super().__init__(f, *amplitudes)
         self.r = r
@@ -68,10 +69,34 @@ class MicroStatique(h.CapacityVariable):
         super().__init__(f, capas, phases)
         self.r = r
         self.vf = vf
-    # ============= A REVOIR ======================
+
+    @staticmethod
+    def derivee(y, x):
+        """Cette méthode statique calcul la dérivée
+        d'une fonction dont on connait les images y
+        ainsi que les antécédents x
+
+        Nous nous sommes inspirés du cours proposé dans
+        le site cpge.frama.io
+        """
+        y, x = np.asarray(y), np.asarray(x)
+        if len(y) != len(x):
+            raise ValueError("Pour utiliser derivee(y, x), y et x doivent être de la même taille")
+        der = []
+        for i in range(len(y) - 1):
+            dy = y[i+1] - y[i]
+            dx = x[i+1] - x[i]
+            der.append(dy / dx)
+        else:
+            # ce qui suit est fait afin de permettre à liste der
+            # d'avoir le même nombre d'élément que y et x pour ne
+            # pas faire bugger la suite du programme
+            der.append(der[-1])
+
+        return np.array(der)
+
     def get_output(self, x, noise):
-        return self.r * self.vf * np.gradient(self.get_signal(x), x) + noise
-    # =============================================
+        return self.r * self.vf * self.derivee(self.get_signal(x), x) + noise
 
 class Amplificateur:
     def __init__(self, r1:float, r2:float):
@@ -137,7 +162,7 @@ class FiltrePasseBas:
         for i in range(1, n):
             dt = t[i] - t[i - 1]
             if dt <= 0:
-                raise ValueError("les valeurs de 'temps' doivent être strictement croissantes")
+                raise ValueError("les valeurs de 'temps' décroissantes")
             alpha = np.exp(-dt / self.tau)
             y[i] = y[i - 1] * alpha + x[i] * (1.0 - alpha)
 
@@ -151,27 +176,20 @@ class IdealFiltrePB:
         :param fc: fréquence de coupure
         """
         self.fc = fc
-    def get_output(self, input_signal):
-        pass
+    def impulse_response(self, t):
+        """"""
+        t = np.asarray(t)
+        return 2 * self.fc * np.sinc(2 * self.fc * t)
+
+    def get_output(self, input_signal, t):
+        dt = t[1]  - t[0]
+        h_t = self.impulse_response(t)
+        return np.convolve(h_t, input_signal, mode="same") * dt
 
 class FiltrePasseBande:
     def __init__(self):
         pass
     def get_output(self):
-        pass
-
-class IdealFiltrePBande:
-    """Implémentation d'un filtre passe-bande
-    idéal
-    """
-    def __init__(self, f1:float, f2:float):
-        """
-
-        :param f1: fréquence de coupure minimale
-        :param f2: fréquence de coupure maximale
-        """
-        self.f1, self.f2 = f1, f2
-    def get_output(self, input_signal):
         pass
 
 if __name__ == "__main__":
@@ -186,29 +204,31 @@ if __name__ == "__main__":
         lambda x : np.cos(x),
         lambda x : np.cos(x) * np.sin(x)
     )
-    capacities = (5e-7, 4e-7, 2e-7)
-    phases_var = (np.pi / 2, np.pi, 0)
+    capacities = (5e-7, 4e-7, 2e-7, 1e-7, 2.5e-7)
+    phases_var = (np.pi / 2, np.pi, 0, 0, 0)
     # =================================================================
     choix = input("Micro statique (S) ou dynamique (D) : ")
     if choix.lower() == "d":
         micro = MicroDynamique(100, 20, amplitudes=amps)
     else:
-        micro = MicroStatique(50, 48, 20, capacities, phases_var)
+        micro = MicroStatique(100, 48, 20, capacities, phases_var)
     # =================================================================
     ampli = Amplificateur(10, 9)
     filtre1 = FiltrePasseBas(500e-5, 2000)
     filtre2 = FiltrePasseBande()
+    filtre3 = IdealFiltrePB(2000)
 
     # =================================================================
     signal1 = micro.get_output(t, BRUIT)
     signal2 = ampli.get_output(signal1)
     signal3 = filtre1.get_output(signal2, t)
+    signal4 = filtre3.get_output(signal2, t)
     # =================================================================
 
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True)
-    ax1.plot(t, signal1)
-    ax2.plot(t, signal2)
-    ax3.plot(t, signal3)
+    ax1.plot(t, signal2)
+    ax2.plot(t, signal3)
+    ax3.plot(t, signal4)
 
     plt.tight_layout()
     plt.show()

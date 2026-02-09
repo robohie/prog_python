@@ -13,18 +13,17 @@ amps = (
         lambda x : np.cos(x) * np.sin(x)
     )
 
-micro = voice.MicroDynamique(50, 5, amps)
+micro = voice.MicroDynamique(50, 20, amps)
 ampli = voice.Amplificateur(10, 9)
-filtre = voice.FiltrePasseBas(400e-6)
+filtre = voice.FiltrePasseBas(400e-6, 2000)
 can = adc.ADC(16, 5, -5)
 
 signal_micro = micro.get_output(t, BRUIT)
-signal_ampli = ampli.get_output(signal_micro)
-signal_filtre = filtre.get_output(signal_ampli, f_echantillon)
+signal_filtre = filtre.get_output(signal_micro, t)
 signal_adc = can.get_numeric(signal_filtre)
 
 fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
-ax1.scatter(t, signal_adc, c="red")
+ax1.plot(t, signal_micro, c="red")
 ax2.plot(t, signal_filtre)
 
 plt.tight_layout()
