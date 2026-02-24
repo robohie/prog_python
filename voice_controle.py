@@ -6,7 +6,7 @@
 # Téléphone : +243 822 460 896
 # ===================================================================
 # Ce module contient les classes MicroDynamique, MicroStatique,
-# Amplificateur, FiltrePasseBas et FiltrePasseBande qui
+# Amplificateur, FiltrePasseBasOrdre1 et FiltrePasseBande qui
 # sont respectivement les implémentations quasi réelles des micro-
 # phones dynamique et statique, de l'amplificateur en configuration
 # non inverseuse, du filtre passe-bas d'ordre 1 et du filtre passe-
@@ -126,7 +126,7 @@ class Amplificateur:
         """
         return ((v_amp / v_in) * np.sqrt(2) - 1) * r1
 
-class FiltrePasseBas:
+class FiltrePasseBasOrdre1:
     def __init__(self, c: float, fc: float):
         """
         :param c: la capacité du filtre passe-bas (F)
@@ -147,9 +147,9 @@ class FiltrePasseBas:
         :return: tableau des échantillons de sortie filtrée
         """
         x = np.asarray(input_signal, dtype=float)
-        t = np.asarray(temps, dtype=float)
+        temps = np.asarray(temps, dtype=float)
 
-        if x.shape != t.shape:
+        if x.shape != temps.shape:
             raise ValueError("input_signal et temps doivent avoir la même forme")
 
         n = x.size
@@ -160,37 +160,56 @@ class FiltrePasseBas:
         y[0] = 0.0  # la condition initiale
 
         for i in range(1, n):
-            dt = t[i] - t[i - 1]
+            dt = temps[i] - temps[i - 1]
             if dt <= 0:
                 raise ValueError("les valeurs de 'temps' décroissantes")
             alpha = np.exp(-dt / self.tau)
             y[i] = y[i - 1] * alpha + x[i] * (1.0 - alpha)
 
         return y
-        
-class IdealFiltrePB:
-    """Implémentation d'un filtre passe-bas idéal"""
-    def __init__(self, fc:float):
+
+class CelluleOrdre2:
+    """Cette classe implémente une cellule
+    de Sallen et Key"""
+    def __init__(self, c2:float, q0:float, w0:float):
         """
 
-        :param fc: fréquence de coupure
+        :param c2: La capacité N°2 de la cellule
+        :param q0: Le facteur de qualité
+        :param w0: La fréquence de résonance
         """
-        self.fc = fc
-    def impulse_response(self, t):
-        """"""
-        t = np.asarray(t)
-        return 2 * self.fc * np.sinc(2 * self.fc * t)
+        self.w0 = w0
+        self.c2 = c2
+        self.c1 = 4 * c2 * q0 ** 2   # La capacité N°1 de la cellule
+        self.r = 1 / (2 * q0 * self.w0 * c2)  # La résistance de la cellule
+        self.q0 = q0
 
-    def get_output(self, input_signal, t):
-        dt = t[1]  - t[0]
-        h_t = self.impulse_response(t)
-        return np.convolve(h_t, input_signal, mode="same") * dt
+    def get_output(self, input_signal, temps):
+        v = np.asarray(input_signal, dtype=float)
+        temps = np.asarray(temps, dtype=float)
 
-class FiltrePasseBande:
-    def __init__(self):
-        pass
-    def get_output(self):
-        pass
+        a = self.c2 * self.c1 * self.r**2
+        b = 2 * self.c2 * self.r
+
+        if v.shape != temps.shape:
+            raise ValueError("input_signal et temps doivent avoir la même forme")
+
+        n = v.size
+        if n==0 or n==1:
+            return np.array([], dtype=float)
+        u = np.zeros_like(v)
+        du = np.zeros_like(v)  # dérivée prémière
+        w0, q = self.w0, self.q0
+        for i in range(1, n):
+            dt = temps[i] - temps[i - 1]
+            if dt <= 0:
+                raise ValueError("les valeurs de 'temps' décroissantes")
+            d2u = w0**2 * (v[i-1] - u[i-1]) - (w0 / q) * du[i-1]
+            du[i] = du[i-1] + dt * d2u
+            u[i] = u[i-1] + dt * du[i]
+
+        return u
+
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
@@ -214,15 +233,13 @@ if __name__ == "__main__":
         micro = MicroStatique(100, 48, 20, capacities, phases_var)
     # =================================================================
     ampli = Amplificateur(10, 9)
-    filtre1 = FiltrePasseBas(500e-5, 2000)
-    filtre2 = FiltrePasseBande()
-    filtre3 = IdealFiltrePB(2000)
-
+    filtre1 = FiltrePasseBasOrdre1(500e-5, 2000)
+    filtre2 = CelluleOrdre2(500e-6, 0.5, 500 * np.pi * 2)
     # =================================================================
     signal1 = micro.get_output(t, BRUIT)
     signal2 = ampli.get_output(signal1)
     signal3 = filtre1.get_output(signal2, t)
-    signal4 = filtre3.get_output(signal2, t)
+    signal4 = filtre2.get_output(signal2, t)
     # =================================================================
 
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True)
