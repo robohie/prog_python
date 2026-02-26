@@ -3,6 +3,7 @@
     <words>
       <w>afin</w>
       <w>ainsi</w>
+      <w>ajout</w>
       <w>aléatoire</w>
       <w>aléatoires</w>
       <w>ampli</w>
@@ -20,12 +21,14 @@
       <w>bosolindo</w>
       <w>branchée</w>
       <w>calcul</w>
+      <w>calculatrice</w>
       <w>capacité</w>
       <w>capacités</w>
       <w>cette</w>
       <w>chaque</w>
       <w>choix</w>
       <w>classe</w>
+      <w>commentaires</w>
       <w>comparaison</w>
       <w>connaissant</w>
       <w>connait</w>
@@ -90,6 +93,7 @@
       <w>frequences</w>
       <w>fréquence</w>
       <w>graphe</w>
+      <w>groupe</w>
       <w>harmonique</w>
       <w>harmoniques</w>
       <w>humain</w>
@@ -121,7 +125,9 @@
       <w>nbre</w>
       <w>ngonga</w>
       <w>nombre</w>
+      <w>nombres</w>
       <w>ordre</w>
+      <w>partie</w>
       <w>permettre</w>
       <w>pertes</w>
       <w>pleine</w>
@@ -138,6 +144,7 @@
       <w>respectivement</w>
       <w>retourne</w>
       <w>revoir</w>
+      <w>rmsprop</w>
       <w>réelles</w>
       <w>résultats</w>
       <w>sallen</w>
