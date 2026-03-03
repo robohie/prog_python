@@ -140,7 +140,7 @@ class FiltrePasseBasOrdre1:
         """
         Filtre passe-bas d'ordre 1
         Utilise la solution analytique discrète :
-        y[n] = y[n-1] * exp(-dt / tau) + x[n] * (1 - exp(-dt / tau))
+        y[n] = y[n-1] * exp(-dt / tau) + x[n] * dt
 
         :param input_signal: tableau des échantillons d'entrée
         :param temps: tableau des instants correspondants aux échantillons
@@ -164,7 +164,7 @@ class FiltrePasseBasOrdre1:
             if dt <= 0:
                 raise ValueError("les valeurs de 'temps' décroissantes")
             alpha = np.exp(-dt / self.tau)
-            y[i] = y[i - 1] * alpha + x[i] * (1.0 - alpha)
+            y[i] = y[i - 1] * alpha + x[i] * dt
 
         return y
 
@@ -187,9 +187,6 @@ class CelluleOrdre2:
     def get_output(self, input_signal, temps):
         v = np.asarray(input_signal, dtype=float)
         temps = np.asarray(temps, dtype=float)
-
-        a = self.c2 * self.c1 * self.r**2
-        b = 2 * self.c2 * self.r
 
         if v.shape != temps.shape:
             raise ValueError("input_signal et temps doivent avoir la même forme")
@@ -233,7 +230,7 @@ if __name__ == "__main__":
         micro = MicroStatique(100, 48, 20, capacities, phases_var)
     # =================================================================
     ampli = Amplificateur(10, 9)
-    filtre1 = FiltrePasseBasOrdre1(500e-5, 2000)
+    filtre1 = FiltrePasseBasOrdre1(500e-6, 2000)
     filtre2 = CelluleOrdre2(500e-6, 0.5, 500 * np.pi * 2)
     # =================================================================
     signal1 = micro.get_output(t, BRUIT)

@@ -38,6 +38,7 @@
       <w>considérés</w>
       <w>contient</w>
       <w>contrôle</w>
+      <w>convertisseur</w>
       <w>correspondance</w>
       <w>correspondants</w>
       <w>couche</w>
@@ -90,10 +91,12 @@
       <w>forme</w>
       <w>formé</w>
       <w>fourni</w>
+      <w>fournit</w>
       <w>frequences</w>
       <w>fréquence</w>
       <w>graphe</w>
       <w>groupe</w>
+      <w>génératrice</w>
       <w>harmonique</w>
       <w>harmoniques</w>
       <w>humain</w>
@@ -110,8 +113,10 @@
       <w>l'avons</w>
       <w>l'excitation</w>
       <w>l'instance</w>
+      <w>l'interpréteur</w>
       <w>l'origine</w>
       <w>l'université</w>
+      <w>l'utiliser</w>
       <w>limite</w>
       <w>liste</w>
       <w>maille</w>
@@ -119,6 +124,7 @@
       <w>membre</w>
       <w>minimale</w>
       <w>modèle</w>
+      <w>modèles</w>
       <w>moteur</w>
       <w>moyenne</w>
       <w>n'est</w>
@@ -126,6 +132,7 @@
       <w>ngonga</w>
       <w>nombre</w>
       <w>nombres</w>
+      <w>obtenir</w>
       <w>ordre</w>
       <w>partie</w>
       <w>permettre</w>
@@ -148,6 +155,7 @@
       <w>réelles</w>
       <w>résultats</w>
       <w>sallen</w>
+      <w>sauvegarder</w>
       <w>serait</w>
       <w>signaux</w>
       <w>sommes</w>
@@ -157,6 +165,8 @@
       <w>suivant</w>
       <w>sujet</w>
       <w>système</w>
+      <w>tenseurs</w>
+      <w>tflite</w>
       <w>transfert</w>
       <w>uniforme</w>
       <w>université</w>
