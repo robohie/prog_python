@@ -6,34 +6,29 @@
 # Téléphone : +243 822 460 896
 # ===================================================================
 # Ce module contient les classes MicroDynamique, MicroStatique,
-# Amplificateur, FiltrePasseBasOrdre1 et FiltrePasseBande qui
-# sont respectivement les implémentations quasi réelles des micro-
-# phones dynamique et statique, de l'amplificateur en configuration
-# non inverseuse, du filtre passe-bas d'ordre 1 et du filtre passe-
-# bande.
+# Amplificateur, FiltrePasseBasOrdre1 et CelluleOrdre2 qui
+# ===================== INTRODUCTION ===============================
+# MicroDynamique est la classe, héritant de human_signal.TensionVoice,
+# qui implémente un microphone dynamique.
+# MicroStatique est la classe, héritant de human_signal.CapacityVariable
+# qui implément quant à lui, un microphone statique.
+# La classe Amplificateur est l'implémentation d'un système
+# d'amplification non inverseur.
+# La classe FiltrePasseBasOrdre1 simule un filtre RC.
+# La classe CelluleOrdre2 simule une configuration de Sallen-Kay pour
+# un filtre passe-bas de gain unitaire
 # ===================================================================
 
 import human_signal as h
 import numpy as np
+from scipy import signal
 
-def bruit(x, amp_min=0.01, amp_max=0.1, nbre_harmonique=10):
-    """Retourne un bruit au(x) temps x fourni
-
-    :param nbre_harmonique: nombre d'harmoniques
-    :param amp_min: amplitude minimale du bruit
-    :param amp_max: amplitude maximale du bruit
-    :param x: temps (s)
-    """
-    x = np.asarray(x)
-    # Nous prénons une fréquence fondamentale aléatoire
-    # ainsi que des amps aléatoires entre amp_min
-    # et amp_max
-    f = np.random.uniform(2000, 5000)
-    amplitudes = np.random.uniform(amp_min, amp_max, size=(nbre_harmonique, ))
-    b = 0
-    for k, a in enumerate(amplitudes, start=1):
-        b += a * np.sin(2 * np.pi * k * f * x)
-    return b
+def bruit(x, sigma=0.05):
+    n = len(x)
+    freqs = np.fft.rfftfreq(n)
+    freqs[0] = 1
+    spectre = np.random.randn(len(freqs)) / np.sqrt(freqs)
+    return np.fft.irfft(spectre, n) * sigma
 
 class MicroDynamique(h.TensionVoice):
     def __init__(self, r:float, f:float, amplitudes):
@@ -82,18 +77,7 @@ class MicroStatique(h.CapacityVariable):
         y, x = np.asarray(y), np.asarray(x)
         if len(y) != len(x):
             raise ValueError("Pour utiliser derivee(y, x), y et x doivent être de la même taille")
-        der = []
-        for i in range(len(y) - 1):
-            dy = y[i+1] - y[i]
-            dx = x[i+1] - x[i]
-            der.append(dy / dx)
-        else:
-            # ce qui suit est fait afin de permettre à liste der
-            # d'avoir le même nombre d'élément que y et x pour ne
-            # pas faire bugger la suite du programme
-            der.append(der[-1])
-
-        return np.array(der)
+        return np.gradient(y, x)
 
     def get_output(self, x, noise):
         return self.r * self.vf * self.derivee(self.get_signal(x), x) + noise
@@ -124,7 +108,8 @@ class Amplificateur:
         :param v_amp: tension moyenne de sortie
         :param r1: la résistance R1
         """
-        return ((v_amp / v_in) * np.sqrt(2) - 1) * r1
+        gain = v_amp / v_in
+        return (gain - 1) * r1
 
 class FiltrePasseBasOrdre1:
     def __init__(self, c: float, fc: float):
@@ -164,13 +149,16 @@ class FiltrePasseBasOrdre1:
             if dt <= 0:
                 raise ValueError("les valeurs de 'temps' décroissantes")
             alpha = np.exp(-dt / self.tau)
-            y[i] = y[i - 1] * alpha + x[i] * dt
+            y[i] = y[i - 1] * alpha + (1 - alpha) * x[i]
 
         return y
 
 class CelluleOrdre2:
     """Cette classe implémente une cellule
-    de Sallen et Key"""
+    de Sallen et Key
+    Cette partie du programme est à grande
+    partie issu de Claude.AI qui nous a aidé
+    à régler le problème de 'Overflow'"""
     def __init__(self, c2:float, q0:float, w0:float):
         """
 
@@ -178,71 +166,66 @@ class CelluleOrdre2:
         :param q0: Le facteur de qualité
         :param w0: La fréquence de résonance
         """
+        if w0 <= 0:
+            raise ValueError
+        if q0 <= 0:
+            raise ValueError
+        if c2 <= 0:
+            raise ValueError
         self.w0 = w0
         self.c2 = c2
         self.c1 = 4 * c2 * q0 ** 2   # La capacité N°1 de la cellule
         self.r = 1 / (2 * q0 * self.w0 * c2)  # La résistance de la cellule
         self.q0 = q0
-
     def get_output(self, input_signal, temps):
+        """Filtre le signal d'entrée et retourne le signal de sortie.
+        """
         v = np.asarray(input_signal, dtype=float)
         temps = np.asarray(temps, dtype=float)
 
         if v.shape != temps.shape:
-            raise ValueError("input_signal et temps doivent avoir la même forme")
-
+            raise ValueError
         n = v.size
-        if n==0 or n==1:
+        if n <= 1:
             return np.array([], dtype=float)
-        u = np.zeros_like(v)
-        du = np.zeros_like(v)  # dérivée prémière
-        w0, q = self.w0, self.q0
-        for i in range(1, n):
-            dt = temps[i] - temps[i - 1]
-            if dt <= 0:
-                raise ValueError("les valeurs de 'temps' décroissantes")
-            d2u = w0**2 * (v[i-1] - u[i-1]) - (w0 / q) * du[i-1]
-            du[i] = du[i-1] + dt * d2u
-            u[i] = u[i-1] + dt * du[i]
+        dt = np.mean(np.diff(temps))
+        if dt <= 0:
+            raise ValueError
+        fs = 1 / dt
 
-        return u
+        b_analog = [self.w0 ** 2]
+        a_analog = [1, self.w0 / self.q0, self.w0 ** 2]
 
+        b_digit, a_digit = signal.bilinear(b_analog, a_analog, fs=fs)
+        return signal.lfilter(b_digit, a_digit, v)
+# ================================================================================================
+
+class AnalogPart:
+    """Cette classe utilise toutes les classes définies précédemment :
+    MicroDynamique ou MicroStatique, Amplificateur, FiltrePasseBasOrdre1
+    et CelluleOrdre2, pour mettre en place l'implémentation finale
+    du système d'acquisition de la voix. Le filtre considéré est une
+    approximation d'ordre 5 de Chebyshev i.e. une cellule d'ordre 1 en
+    cascade avec 2 cellules d'ordre 2
+    """
+    def __init__(self, r1, r2, c1, fc, c2, c3):
+        self.q1 = np.sqrt(2.097 / 1.23 ** 2)  # facteur de qualité pour CelluleOrdre2 1
+        self.q2 = np.sqrt(0.965 / 0.216 ** 2)  # facteur de qualité pour CelluleOrdre2 2
+        self.w1 = 2 * np.pi * fc / np.sqrt(2.097)
+        self.w2 = 2 * np.pi * fc / np.sqrt(0.965)
+
+        self.amplificateur = Amplificateur(r1, r2)
+        self.cellule1 = FiltrePasseBasOrdre1(c1, fc)
+        self.cellule2 = CelluleOrdre2(c2, self.q1, self.w1)
+        self.cellule3 = CelluleOrdre2(c3, self.q2, self.w2)
+
+    def get_output(self, input_signal, temps):
+        sortie1 = self.amplificateur.get_output(input_signal)
+        sortie2 = self.cellule1.get_output(sortie1, temps)
+        sortie3 = self.cellule2.get_output(sortie2, temps)
+        sortie4 = self.cellule3.get_output(sortie3, temps)
+
+        return sortie4
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
-
-    f_echantillon = 5000
-    t = np.linspace(0, 1, f_echantillon)
-    BRUIT = bruit(t)
-    # ==============================================================================
-    amps = (
-        lambda x : np.sin(x),
-        lambda x : np.cos(x),
-        lambda x : np.cos(x) * np.sin(x)
-    )
-    capacities = (5e-7, 4e-7, 2e-7, 1e-7, 2.5e-7)
-    phases_var = (np.pi / 2, np.pi, 0, 0, 0)
-    # =================================================================
-    choix = input("Micro statique (S) ou dynamique (D) : ")
-    if choix.lower() == "d":
-        micro = MicroDynamique(100, 20, amplitudes=amps)
-    else:
-        micro = MicroStatique(100, 48, 20, capacities, phases_var)
-    # =================================================================
-    ampli = Amplificateur(10, 9)
-    filtre1 = FiltrePasseBasOrdre1(500e-6, 2000)
-    filtre2 = CelluleOrdre2(500e-6, 0.5, 500 * np.pi * 2)
-    # =================================================================
-    signal1 = micro.get_output(t, BRUIT)
-    signal2 = ampli.get_output(signal1)
-    signal3 = filtre1.get_output(signal2, t)
-    signal4 = filtre2.get_output(signal2, t)
-    # =================================================================
-
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True)
-    ax1.plot(t, signal2)
-    ax2.plot(t, signal3)
-    ax3.plot(t, signal4)
-
-    plt.tight_layout()
-    plt.show()
+    pass

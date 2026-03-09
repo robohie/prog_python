@@ -44,7 +44,9 @@
       <w>couche</w>
       <w>cours</w>
       <w>croissantes</w>
+      <w>d'acquisition</w>
       <w>d'alimentation</w>
+      <w>d'amplification</w>
       <w>d'amplitude</w>
       <w>d'amplitudes</w>
       <w>d'avoir</w>
@@ -66,6 +68,7 @@
       <w>dynamique</w>
       <w>déclarons</w>
       <w>décroissantes</w>
+      <w>définies</w>
       <w>dépendances</w>
       <w>déphasage</w>
       <w>déphasages</w>
@@ -101,17 +104,20 @@
       <w>harmoniques</w>
       <w>humain</w>
       <w>humaine</w>
+      <w>héritant</w>
       <w>idéaux</w>
       <w>implémente</w>
       <w>implémentent</w>
       <w>initiale</w>
       <w>integrale</w>
       <w>integrande</w>
+      <w>inverseur</w>
       <w>inverseuse</w>
       <w>l'ampli</w>
       <w>l'amplificateur</w>
       <w>l'avons</w>
       <w>l'excitation</w>
+      <w>l'implémentation</w>
       <w>l'instance</w>
       <w>l'interpréteur</w>
       <w>l'origine</w>
@@ -122,6 +128,7 @@
       <w>maille</w>
       <w>maximale</w>
       <w>membre</w>
+      <w>mettre</w>
       <w>minimale</w>
       <w>modèle</w>
       <w>modèles</w>
@@ -142,6 +149,7 @@
       <w>polytechnique</w>
       <w>pouvant</w>
       <w>probablement</w>
+      <w>précédemment</w>
       <w>prédites</w>
       <w>prénons</w>
       <w>présenté</w>
@@ -158,6 +166,7 @@
       <w>sauvegarder</w>
       <w>serait</w>
       <w>signaux</w>
+      <w>simule</w>
       <w>sommes</w>
       <w>sont</w>
       <w>statique</w>
@@ -167,8 +176,10 @@
       <w>système</w>
       <w>tenseurs</w>
       <w>tflite</w>
+      <w>toutes</w>
       <w>transfert</w>
       <w>uniforme</w>
+      <w>unitaire</w>
       <w>université</w>
       <w>utilisons</w>
       <w>valeur</w>
