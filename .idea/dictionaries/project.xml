@@ -1,45 +1,66 @@
 <component name="ProjectDictionaryState">
   <dictionary name="project">
     <words>
+      <w>adaptatif</w>
       <w>afin</w>
+      <w>agrandi</w>
+      <w>agrandir</w>
       <w>ainsi</w>
       <w>ajout</w>
+      <w>ajouter</w>
+      <w>ajuste</w>
+      <w>algorithme</w>
+      <w>alloue</w>
       <w>aléatoire</w>
+      <w>aléatoirement</w>
       <w>aléatoires</w>
       <w>ampli</w>
       <w>amplificateur</w>
       <w>amélioré</w>
       <w>analytique</w>
       <w>angulaire</w>
+      <w>appelé</w>
       <w>approximer</w>
+      <w>appuyez</w>
       <w>aussi</w>
+      <w>automatiquement</w>
       <w>avec</w>
       <w>avoir</w>
       <w>avons</w>
       <w>ayant</w>
       <w>bande</w>
+      <w>basique</w>
+      <w>bibliothèque</w>
+      <w>bibliothèques</w>
       <w>bosolindo</w>
       <w>branchée</w>
       <w>calcul</w>
       <w>calculatrice</w>
+      <w>calculer</w>
       <w>capacité</w>
       <w>capacités</w>
       <w>cette</w>
       <w>chaque</w>
+      <w>chemin</w>
       <w>choix</w>
       <w>classe</w>
       <w>commentaires</w>
       <w>comparaison</w>
+      <w>complets</w>
+      <w>compressé</w>
       <w>connaissant</w>
       <w>connait</w>
       <w>connectée</w>
       <w>considérant</w>
       <w>considéré</w>
       <w>considérés</w>
+      <w>constitué</w>
       <w>contient</w>
       <w>contrôle</w>
+      <w>convertir</w>
       <w>convertisseur</w>
       <w>correspondance</w>
+      <w>correspondant</w>
       <w>correspondants</w>
       <w>couche</w>
       <w>cours</w>
@@ -52,7 +73,9 @@
       <w>d'avoir</w>
       <w>d'entrainement</w>
       <w>d'entrée</w>
+      <w>d'erreur</w>
       <w>d'harmoniques</w>
+      <w>d'optimisation</w>
       <w>d'ordre</w>
       <w>d'un</w>
       <w>d'une</w>
@@ -65,27 +88,41 @@
       <w>diagramme</w>
       <w>doivent</w>
       <w>dont</w>
+      <w>duree</w>
       <w>dynamique</w>
       <w>déclarons</w>
       <w>décroissantes</w>
       <w>définies</w>
+      <w>démarrage</w>
       <w>dépendances</w>
       <w>déphasage</w>
       <w>déphasages</w>
       <w>echantillon</w>
+      <w>echantillonnage</w>
       <w>edhiengene</w>
+      <w>effectue</w>
+      <w>enregistrements</w>
       <w>entière</w>
       <w>entrainement</w>
       <w>enveloppes</w>
       <w>erreur</w>
+      <w>erreurs</w>
+      <w>espace</w>
       <w>essai</w>
+      <w>evalue</w>
+      <w>exactement</w>
+      <w>exemples</w>
       <w>facteur</w>
       <w>faculté</w>
+      <w>faible</w>
       <w>faite</w>
       <w>fantome</w>
       <w>fantôme</w>
+      <w>fichier</w>
+      <w>fichiers</w>
       <w>filtre</w>
       <w>filtrée</w>
+      <w>fois</w>
       <w>fonction</w>
       <w>fonctionnement</w>
       <w>fonctions</w>
@@ -94,12 +131,16 @@
       <w>forme</w>
       <w>formé</w>
       <w>fourni</w>
+      <w>fournir</w>
       <w>fournit</w>
+      <w>frequence</w>
       <w>frequences</w>
       <w>fréquence</w>
+      <w>gaussien</w>
       <w>graphe</w>
       <w>groupe</w>
       <w>génératrice</w>
+      <w>générer</w>
       <w>harmonique</w>
       <w>harmoniques</w>
       <w>humain</w>
@@ -108,15 +149,19 @@
       <w>idéaux</w>
       <w>implémente</w>
       <w>implémentent</w>
+      <w>inclut</w>
+      <w>indéfiniment</w>
       <w>initiale</w>
       <w>integrale</w>
       <w>integrande</w>
       <w>inverseur</w>
       <w>inverseuse</w>
+      <w>l'ajout</w>
       <w>l'ampli</w>
       <w>l'amplificateur</w>
       <w>l'avons</w>
       <w>l'excitation</w>
+      <w>l'expérience</w>
       <w>l'implémentation</w>
       <w>l'instance</w>
       <w>l'interpréteur</w>
@@ -126,12 +171,15 @@
       <w>limite</w>
       <w>liste</w>
       <w>maille</w>
+      <w>marche</w>
       <w>maximale</w>
       <w>membre</w>
+      <w>mesure</w>
       <w>mettre</w>
       <w>minimale</w>
       <w>modèle</w>
       <w>modèles</w>
+      <w>moins</w>
       <w>moteur</w>
       <w>moyenne</w>
       <w>n'est</w>
@@ -140,51 +188,70 @@
       <w>nombre</w>
       <w>nombres</w>
       <w>obtenir</w>
+      <w>opérateurs</w>
       <w>ordre</w>
       <w>partie</w>
       <w>permettre</w>
+      <w>perte</w>
       <w>pertes</w>
       <w>pleine</w>
       <w>plusieurs</w>
       <w>polytechnique</w>
       <w>pouvant</w>
+      <w>principale</w>
       <w>probablement</w>
+      <w>prononcez</w>
       <w>précédemment</w>
       <w>prédites</w>
       <w>prénons</w>
       <w>présenté</w>
+      <w>puis</w>
       <w>qualité</w>
+      <w>quantifiée</w>
       <w>rajouter</w>
+      <w>recommencez</w>
       <w>renvoie</w>
+      <w>reproductibilité</w>
       <w>respectivement</w>
       <w>retourne</w>
       <w>revoir</w>
       <w>rmsprop</w>
+      <w>réalité</w>
+      <w>récupère</w>
       <w>réelles</w>
       <w>résultats</w>
       <w>sallen</w>
+      <w>sauvegarde</w>
       <w>sauvegarder</w>
       <w>serait</w>
       <w>signaux</w>
       <w>simule</w>
       <w>sommes</w>
+      <w>sonore</w>
       <w>sont</w>
       <w>statique</w>
       <w>strictement</w>
       <w>suivant</w>
       <w>sujet</w>
       <w>système</w>
+      <w>temporel</w>
+      <w>temporelles</w>
       <w>tenseurs</w>
+      <w>terminé</w>
       <w>tflite</w>
+      <w>tous</w>
       <w>toutes</w>
+      <w>traite</w>
       <w>transfert</w>
       <w>uniforme</w>
+      <w>uniformiser</w>
       <w>unitaire</w>
       <w>université</w>
       <w>utilisons</w>
       <w>valeur</w>
       <w>valeurs</w>
       <w>varie</w>
+      <w>vers</w>
       <w>vient</w>
       <w>voix</w>
       <w>vraie</w>

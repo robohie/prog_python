@@ -78,26 +78,4 @@ class CapacityVariable(TensionVoice):
         return s
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
-
-    t = np.linspace(0, 1, 1000)
-    # ================================================================================
-    amps = (
-        lambda x : 5 * np.exp(-x) * np.sin(x),
-        lambda x : 10 * np.cos(x),
-        lambda x : 4 * np.cos(x) * np.sin(x)
-                  )
-    capacities = (1e-6, 10e-6, 0.1e-6, 1e-7, 20e-6, 1e-9)
-    les_phases = (np.pi, 0, np.pi / 2, 0, 0, 0)
-    # ================================================================================
-    tension = TensionVoice(20, *amps)
-    capa_variable = CapacityVariable(20, capacities, les_phases)
-
-    signal1 = tension.get_signal(t)
-    signal2 = capa_variable.get_signal(t)
-    # ================================================================================
-    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
-    ax1.plot(t, signal1) ; ax1.set_title("Tension")
-    ax2.plot(t, signal2) ; ax2.set_title("Capacité variable")
-
-    plt.show()
+    pass
