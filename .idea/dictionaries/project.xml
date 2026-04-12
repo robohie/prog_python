@@ -34,6 +34,7 @@
       <w>bibliothèques</w>
       <w>bosolindo</w>
       <w>branchée</w>
+      <w>cachée</w>
       <w>calcul</w>
       <w>calculatrice</w>
       <w>calculer</w>
@@ -41,6 +42,7 @@
       <w>capacités</w>
       <w>cette</w>
       <w>chaque</w>
+      <w>chargement</w>
       <w>chemin</w>
       <w>choix</w>
       <w>classe</w>
@@ -54,6 +56,7 @@
       <w>considérant</w>
       <w>considéré</w>
       <w>considérés</w>
+      <w>constantes</w>
       <w>constitué</w>
       <w>contient</w>
       <w>contrôle</w>
@@ -65,6 +68,7 @@
       <w>couche</w>
       <w>cours</w>
       <w>croissantes</w>
+      <w>crossentropy</w>
       <w>d'acquisition</w>
       <w>d'alimentation</w>
       <w>d'amplification</w>
@@ -74,6 +78,7 @@
       <w>d'entrainement</w>
       <w>d'entrée</w>
       <w>d'erreur</w>
+      <w>d'extraction</w>
       <w>d'harmoniques</w>
       <w>d'optimisation</w>
       <w>d'ordre</w>
@@ -82,12 +87,15 @@
       <w>d'échantillonnage</w>
       <w>d'échantillons</w>
       <w>d'élément</w>
+      <w>denses</w>
       <w>derivee</w>
       <w>dernière</w>
+      <w>detecte</w>
       <w>deuxième</w>
       <w>diagramme</w>
       <w>doivent</w>
       <w>dont</w>
+      <w>dure</w>
       <w>duree</w>
       <w>dynamique</w>
       <w>déclarons</w>
@@ -101,6 +109,7 @@
       <w>echantillonnage</w>
       <w>edhiengene</w>
       <w>effectue</w>
+      <w>enregistrement</w>
       <w>enregistrements</w>
       <w>entière</w>
       <w>entrainement</w>
@@ -112,6 +121,7 @@
       <w>evalue</w>
       <w>exactement</w>
       <w>exemples</w>
+      <w>extraire</w>
       <w>facteur</w>
       <w>faculté</w>
       <w>faible</w>
@@ -168,6 +178,7 @@
       <w>l'origine</w>
       <w>l'université</w>
       <w>l'utiliser</w>
+      <w>leurs</w>
       <w>limite</w>
       <w>liste</w>
       <w>maille</w>
@@ -181,6 +192,7 @@
       <w>modèles</w>
       <w>moins</w>
       <w>moteur</w>
+      <w>moyen</w>
       <w>moyenne</w>
       <w>n'est</w>
       <w>nbre</w>
@@ -223,6 +235,7 @@
       <w>sallen</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
+      <w>sauvegardés</w>
       <w>serait</w>
       <w>signaux</w>
       <w>simule</w>
@@ -242,6 +255,7 @@
       <w>tous</w>
       <w>toutes</w>
       <w>traite</w>
+      <w>trames</w>
       <w>transfert</w>
       <w>uniforme</w>
       <w>uniformiser</w>
