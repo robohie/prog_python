@@ -20,7 +20,7 @@ def extract_mfcc(chemin):
     else:
         y = np.pad(y, (0, SR - len(y)))
 
-    mfcc = librosa.feature.mfcc(y=y, sr=SR, n_mfcc=N_MFCC, n_ftt=512, hop_length=160)
+    mfcc = librosa.feature.mfcc(y=y, sr=SR, n_mfcc=N_MFCC, n_fft=512, hop_length=160)
     mfcc = mfcc.T
 
     if mfcc.shape[0] < MAX_FRAMES:
