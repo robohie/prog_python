@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="project">
     <words>
+      <w>absolues</w>
       <w>adaptatif</w>
       <w>afin</w>
       <w>agrandi</w>
@@ -17,6 +18,7 @@
       <w>ampli</w>
       <w>amplificateur</w>
       <w>amélioré</w>
+      <w>analysées</w>
       <w>analytique</w>
       <w>angulaire</w>
       <w>appelé</w>
@@ -29,6 +31,7 @@
       <w>avons</w>
       <w>ayant</w>
       <w>bande</w>
+      <w>bandes</w>
       <w>basique</w>
       <w>bibliothèque</w>
       <w>bibliothèques</w>
@@ -38,6 +41,7 @@
       <w>calcul</w>
       <w>calculatrice</w>
       <w>calculer</w>
+      <w>canaux</w>
       <w>capacité</w>
       <w>capacités</w>
       <w>cette</w>
@@ -50,6 +54,7 @@
       <w>comparaison</w>
       <w>complets</w>
       <w>compressé</w>
+      <w>concernée</w>
       <w>connaissant</w>
       <w>connait</w>
       <w>connectée</w>
@@ -58,6 +63,7 @@
       <w>considérés</w>
       <w>constantes</w>
       <w>constitué</w>
+      <w>contenant</w>
       <w>contient</w>
       <w>contrôle</w>
       <w>convertir</w>
@@ -74,12 +80,14 @@
       <w>d'amplification</w>
       <w>d'amplitude</w>
       <w>d'amplitudes</w>
+      <w>d'analyse</w>
       <w>d'avoir</w>
       <w>d'entrainement</w>
       <w>d'entrée</w>
       <w>d'erreur</w>
       <w>d'extraction</w>
       <w>d'harmoniques</w>
+      <w>d'individus</w>
       <w>d'optimisation</w>
       <w>d'ordre</w>
       <w>d'un</w>
@@ -128,10 +136,14 @@
       <w>faite</w>
       <w>fantome</w>
       <w>fantôme</w>
+      <w>fenêtre</w>
+      <w>fenêtres</w>
       <w>fichier</w>
       <w>fichiers</w>
       <w>filtre</w>
+      <w>filtres</w>
       <w>filtrée</w>
+      <w>flottants</w>
       <w>fois</w>
       <w>fonction</w>
       <w>fonctionnement</w>
@@ -164,25 +176,32 @@
       <w>initiale</w>
       <w>integrale</w>
       <w>integrande</w>
+      <w>intensités</w>
       <w>inverseur</w>
       <w>inverseuse</w>
       <w>l'ajout</w>
       <w>l'ampli</w>
       <w>l'amplificateur</w>
+      <w>l'audio</w>
       <w>l'avons</w>
+      <w>l'enregistrement</w>
       <w>l'excitation</w>
       <w>l'expérience</w>
       <w>l'implémentation</w>
       <w>l'instance</w>
       <w>l'interpréteur</w>
+      <w>l'ordinateur</w>
       <w>l'origine</w>
       <w>l'université</w>
       <w>l'utiliser</w>
+      <w>l'écriture</w>
+      <w>l'étiquette</w>
       <w>leurs</w>
       <w>limite</w>
       <w>liste</w>
       <w>maille</w>
       <w>marche</w>
+      <w>matriciel</w>
       <w>maximale</w>
       <w>membre</w>
       <w>mesure</w>
@@ -194,6 +213,7 @@
       <w>moteur</w>
       <w>moyen</w>
       <w>moyenne</w>
+      <w>musicaux</w>
       <w>n'est</w>
       <w>nbre</w>
       <w>ngonga</w>
@@ -224,6 +244,7 @@
       <w>recommencez</w>
       <w>renvoie</w>
       <w>reproductibilité</w>
+      <w>reseaux</w>
       <w>respectivement</w>
       <w>retourne</w>
       <w>revoir</w>
@@ -242,7 +263,9 @@
       <w>sommes</w>
       <w>sonore</w>
       <w>sont</w>
+      <w>spectrogramme</w>
       <w>statique</w>
+      <w>stft</w>
       <w>strictement</w>
       <w>suivant</w>
       <w>sujet</w>
@@ -250,17 +273,21 @@
       <w>temporel</w>
       <w>temporelles</w>
       <w>tenseurs</w>
+      <w>terme</w>
       <w>terminé</w>
       <w>tflite</w>
       <w>tous</w>
       <w>toutes</w>
       <w>traite</w>
+      <w>traitement</w>
       <w>trames</w>
       <w>transfert</w>
+      <w>transformee</w>
       <w>uniforme</w>
       <w>uniformiser</w>
       <w>unitaire</w>
       <w>université</w>
+      <w>utile</w>
       <w>utilisons</w>
       <w>valeur</w>
       <w>valeurs</w>
@@ -270,8 +297,10 @@
       <w>voix</w>
       <w>vraie</w>
       <w>vraies</w>
+      <w>échantillonné</w>
       <w>échantillons</w>
       <w>électrique</w>
+      <w>époques</w>
       <w>étant</w>
       <w>être</w>
     </words>
