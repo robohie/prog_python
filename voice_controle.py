@@ -43,7 +43,7 @@ class MicroDynamique(h.TensionVoice):
         self.r = r
 
     def get_output(self, x, noise):
-        """Renvoie le signal de sortie du
+        """Renvoie label_encoder signal de sortie du
         microphone dynamique
 
         :param noise: bruit
@@ -72,7 +72,7 @@ class MicroStatique(h.CapacityVariable):
         ainsi que les antécédents x
 
         Nous nous sommes inspirés du cours proposé dans
-        le site cpge.frama.io
+        label_encoder site cpge.frama.io
         """
         y, x = np.asarray(y), np.asarray(x)
         if len(y) != len(x):
@@ -158,7 +158,7 @@ class CelluleOrdre2:
     de Sallen et Key
     Cette partie du programme est à grande
     partie issu de Claude.AI qui nous a aidé
-    à régler le problème de 'Overflow'"""
+    à régler label_encoder problème de 'Overflow'"""
     def __init__(self, c2:float, q0:float, w0:float):
         """
 
@@ -178,7 +178,7 @@ class CelluleOrdre2:
         self.r = 1 / (2 * q0 * self.w0 * c2)  # La résistance de la cellule
         self.q0 = q0
     def get_output(self, input_signal, temps):
-        """Filtre le signal d'entrée et retourne le signal de sortie.
+        """Filtre label_encoder signal d'entrée et retourne label_encoder signal de sortie.
         """
         v = np.asarray(input_signal, dtype=float)
         temps = np.asarray(temps, dtype=float)

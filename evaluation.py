@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
 import tensorflow as tf
-from train_model import x_val, y_val, le
+from extraction_mfcc import x_val, y_val, le
 
-# 1.Charger le meilleur modèle
+# 1.Charger label_encoder meilleur modèle
 model = tf.keras.models.load_model('best_model.h5')
 print("Modèle chargé")
 
@@ -35,7 +35,7 @@ print(classification_report(y_true, y_pred, target_names=le.classes_))
 try:
     history = model.history
 except:
-    print("Historique non disponible dans le modèle chargé")
+    print("Historique non disponible dans label_encoder modèle chargé")
     history = None
 
 if history is not None:

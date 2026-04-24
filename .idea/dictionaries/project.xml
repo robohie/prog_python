@@ -44,16 +44,21 @@
       <w>canaux</w>
       <w>capacité</w>
       <w>capacités</w>
+      <w>caractéristiques</w>
       <w>cette</w>
       <w>chaque</w>
       <w>chargement</w>
       <w>chemin</w>
       <w>choix</w>
       <w>classe</w>
+      <w>codage</w>
       <w>commentaires</w>
       <w>comparaison</w>
       <w>complets</w>
+      <w>complexe</w>
       <w>compressé</w>
+      <w>compte</w>
+      <w>compteur</w>
       <w>concernée</w>
       <w>connaissant</w>
       <w>connait</w>
@@ -66,8 +71,10 @@
       <w>contenant</w>
       <w>contient</w>
       <w>contrôle</w>
+      <w>convertie</w>
       <w>convertir</w>
       <w>convertisseur</w>
+      <w>convolutifs</w>
       <w>correspondance</w>
       <w>correspondant</w>
       <w>correspondants</w>
@@ -75,6 +82,7 @@
       <w>cours</w>
       <w>croissantes</w>
       <w>crossentropy</w>
+      <w>créer</w>
       <w>d'acquisition</w>
       <w>d'alimentation</w>
       <w>d'amplification</w>
@@ -82,6 +90,7 @@
       <w>d'amplitudes</w>
       <w>d'analyse</w>
       <w>d'avoir</w>
+      <w>d'enregistrement</w>
       <w>d'entrainement</w>
       <w>d'entrée</w>
       <w>d'erreur</w>
@@ -92,6 +101,7 @@
       <w>d'ordre</w>
       <w>d'un</w>
       <w>d'une</w>
+      <w>d'utiliser</w>
       <w>d'échantillonnage</w>
       <w>d'échantillons</w>
       <w>d'élément</w>
@@ -119,6 +129,7 @@
       <w>effectue</w>
       <w>enregistrement</w>
       <w>enregistrements</w>
+      <w>enregistré</w>
       <w>entière</w>
       <w>entrainement</w>
       <w>enveloppes</w>
@@ -130,9 +141,11 @@
       <w>exactement</w>
       <w>exemples</w>
       <w>extraire</w>
+      <w>extraites</w>
       <w>facteur</w>
       <w>faculté</w>
       <w>faible</w>
+      <w>faibles</w>
       <w>faite</w>
       <w>fantome</w>
       <w>fantôme</w>
@@ -158,6 +171,7 @@
       <w>frequence</w>
       <w>frequences</w>
       <w>fréquence</w>
+      <w>fréquentielle</w>
       <w>gaussien</w>
       <w>graphe</w>
       <w>groupe</w>
@@ -182,6 +196,7 @@
       <w>l'ajout</w>
       <w>l'ampli</w>
       <w>l'amplificateur</w>
+      <w>l'amplitude</w>
       <w>l'audio</w>
       <w>l'avons</w>
       <w>l'enregistrement</w>
@@ -194,6 +209,7 @@
       <w>l'origine</w>
       <w>l'université</w>
       <w>l'utiliser</w>
+      <w>l'échantillon</w>
       <w>l'écriture</w>
       <w>l'étiquette</w>
       <w>leurs</w>
@@ -215,6 +231,7 @@
       <w>moyenne</w>
       <w>musicaux</w>
       <w>n'est</w>
+      <w>n'existe</w>
       <w>nbre</w>
       <w>ngonga</w>
       <w>nombre</w>
@@ -231,6 +248,7 @@
       <w>polytechnique</w>
       <w>pouvant</w>
       <w>principale</w>
+      <w>probabilités</w>
       <w>probablement</w>
       <w>prononcez</w>
       <w>précédemment</w>
@@ -240,10 +258,13 @@
       <w>puis</w>
       <w>qualité</w>
       <w>quantifiée</w>
+      <w>quelles</w>
       <w>rajouter</w>
+      <w>rebours</w>
       <w>recommencez</w>
       <w>renvoie</w>
       <w>reproductibilité</w>
+      <w>reproductible</w>
       <w>reseaux</w>
       <w>respectivement</w>
       <w>retourne</w>
@@ -252,6 +273,7 @@
       <w>réalité</w>
       <w>récupère</w>
       <w>réelles</w>
+      <w>réseau</w>
       <w>résultats</w>
       <w>sallen</w>
       <w>sauvegarde</w>
@@ -267,14 +289,18 @@
       <w>statique</w>
       <w>stft</w>
       <w>strictement</w>
+      <w>successives</w>
       <w>suivant</w>
       <w>sujet</w>
+      <w>surapprentissage</w>
       <w>système</w>
       <w>temporel</w>
       <w>temporelles</w>
+      <w>tenseur</w>
       <w>tenseurs</w>
       <w>terme</w>
       <w>terminé</w>
+      <w>texte</w>
       <w>tflite</w>
       <w>tous</w>
       <w>toutes</w>
@@ -282,7 +308,10 @@
       <w>traitement</w>
       <w>trames</w>
       <w>transfert</w>
+      <w>transforme</w>
       <w>transformee</w>
+      <w>tronquer</w>
+      <w>trop</w>
       <w>uniforme</w>
       <w>uniformiser</w>
       <w>unitaire</w>
@@ -294,14 +323,17 @@
       <w>varie</w>
       <w>vers</w>
       <w>vient</w>
+      <w>voir</w>
       <w>voix</w>
       <w>vraie</w>
       <w>vraies</w>
+      <w>écart</w>
       <w>échantillonné</w>
       <w>échantillons</w>
       <w>électrique</w>
       <w>époques</w>
       <w>étant</w>
+      <w>étiquettes</w>
       <w>être</w>
     </words>
   </dictionary>

@@ -6,9 +6,9 @@
 # email : rogerbosolinndo34@gmail.com
 # Téléphone : +243 822 460 896
 # ===================================================================
-# Ce module contient deux classes qui implémentent le fonctionnement
+# Ce module contient deux classes qui implémentent label_encoder fonctionnement
 # respectivement de deux microphones idéaux i.e. sans bruit à savoir
-# le microphone dynamique et le microphone statique,
+# label_encoder microphone dynamique et label_encoder microphone statique,
 # que nous avons analysés.
 # ===================================================================
 
@@ -18,7 +18,7 @@ ERREUR1 = "La fondamentale d'un son humain doit être entre 20 Hz et 2 kHz"
 
 class TensionVoice:
     """
-    Cette classe implémente le fonctionnement d'un microphone
+    Cette classe implémente label_encoder fonctionnement d'un microphone
     dynamique idéal. Pour ce faire, nous l'avons considéré
     comme une source tension générant un signal composé en
     considérant plusieurs harmoniques et une fondamentale
@@ -37,7 +37,7 @@ class TensionVoice:
         self.f = f
         self.amplitudes = amplitudes
     def get_signal(self, x):
-        """Renvoie le signal de sortie de fréquence
+        """Renvoie label_encoder signal de sortie de fréquence
         fondamentale self.f et d'amplitudes self.amps
 
         :param x: temps (s)
@@ -50,11 +50,11 @@ class TensionVoice:
 
 class CapacityVariable(TensionVoice):
     """
-    Cette classe implémente le fonctionnement d'un microphone
+    Cette classe implémente label_encoder fonctionnement d'un microphone
     statique idéal. Pour ce faire, nous l'avons considéré
     comme formé d'une capacité qui varie de la même façon
     que l'excitation de la membrane du microphone. Sa vraie
-    implémentation sera faite dans le module voice_contrôle.py
+    implémentation sera faite dans label_encoder module voice_contrôle.py
     """
     def __init__(self, f:float, capas:tuple, phases:tuple):
         """
