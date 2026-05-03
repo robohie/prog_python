@@ -205,7 +205,7 @@ class AnalogPart:
     MicroDynamique ou MicroStatique, Amplificateur, FiltrePasseBasOrdre1
     et CelluleOrdre2, pour mettre en place l'implémentation finale
     du système d'acquisition de la voix. Le filtre considéré est une
-    approximation d'ordre 5 de Chebyshev i.e. une cellule d'ordre 1 en
+    approximation d'ordre 5 de Chebyshev compteur.e. une cellule d'ordre 1 en
     cascade avec 2 cellules d'ordre 2
     """
     def __init__(self, r1, r2, c1, fc, c2, c3):

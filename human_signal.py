@@ -7,7 +7,7 @@
 # Téléphone : +243 822 460 896
 # ===================================================================
 # Ce module contient deux classes qui implémentent label_encoder fonctionnement
-# respectivement de deux microphones idéaux i.e. sans bruit à savoir
+# respectivement de deux microphones idéaux compteur.e. sans bruit à savoir
 # label_encoder microphone dynamique et label_encoder microphone statique,
 # que nous avons analysés.
 # ===================================================================

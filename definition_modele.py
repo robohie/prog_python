@@ -2,7 +2,7 @@ from tensorflow import keras
 from tensorflow.keras import layers, models
 from load_dataset import NUM_CLASSES
 
-INPUT_SHAPE=(100, 20, 1) # (max_frames, n_mfcc, canaux)
+INPUT_SHAPE=(100, 13, 1) # (max_frames, n_mfcc, canaux)
 
 def def_model():
     model = models.Sequential([

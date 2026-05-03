@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>absolues</w>
+      <w>activer</w>
       <w>adaptatif</w>
       <w>afin</w>
       <w>agrandi</w>
@@ -21,10 +22,14 @@
       <w>analysées</w>
       <w>analytique</w>
       <w>angulaire</w>
+      <w>appartenant</w>
+      <w>appelle</w>
       <w>appelé</w>
       <w>approximer</w>
       <w>appuyez</w>
+      <w>arrêter</w>
       <w>aussi</w>
+      <w>automatique</w>
       <w>automatiquement</w>
       <w>avec</w>
       <w>avoir</w>
@@ -51,8 +56,11 @@
       <w>chemin</w>
       <w>choix</w>
       <w>classe</w>
+      <w>clés</w>
       <w>codage</w>
+      <w>combien</w>
       <w>commentaires</w>
+      <w>compacte</w>
       <w>comparaison</w>
       <w>complets</w>
       <w>complexe</w>
@@ -69,6 +77,7 @@
       <w>constantes</w>
       <w>constitué</w>
       <w>contenant</w>
+      <w>contenu</w>
       <w>contient</w>
       <w>contrôle</w>
       <w>convertie</w>
@@ -79,6 +88,7 @@
       <w>correspondant</w>
       <w>correspondants</w>
       <w>couche</w>
+      <w>courbes</w>
       <w>cours</w>
       <w>croissantes</w>
       <w>crossentropy</w>
@@ -94,6 +104,7 @@
       <w>d'entrainement</w>
       <w>d'entrée</w>
       <w>d'erreur</w>
+      <w>d'exemple</w>
       <w>d'extraction</w>
       <w>d'harmoniques</w>
       <w>d'individus</w>
@@ -117,12 +128,15 @@
       <w>duree</w>
       <w>dynamique</w>
       <w>déclarons</w>
+      <w>découpe</w>
       <w>décroissantes</w>
       <w>définies</w>
+      <w>définit</w>
       <w>démarrage</w>
       <w>dépendances</w>
       <w>déphasage</w>
       <w>déphasages</w>
+      <w>détaillé</w>
       <w>echantillon</w>
       <w>echantillonnage</w>
       <w>edhiengene</w>
@@ -133,11 +147,13 @@
       <w>entière</w>
       <w>entrainement</w>
       <w>enveloppes</w>
+      <w>epoques</w>
       <w>erreur</w>
       <w>erreurs</w>
       <w>espace</w>
       <w>essai</w>
       <w>evalue</w>
+      <w>evaluer</w>
       <w>exactement</w>
       <w>exemples</w>
       <w>extraire</w>
@@ -163,6 +179,7 @@
       <w>fonctions</w>
       <w>fondamental</w>
       <w>fondamentale</w>
+      <w>forcer</w>
       <w>forme</w>
       <w>formé</w>
       <w>fourni</w>
@@ -171,10 +188,13 @@
       <w>frequence</w>
       <w>frequences</w>
       <w>fréquence</w>
+      <w>fréquentiel</w>
       <w>fréquentielle</w>
       <w>gaussien</w>
       <w>graphe</w>
       <w>groupe</w>
+      <w>groupes</w>
+      <w>générateur</w>
       <w>génératrice</w>
       <w>générer</w>
       <w>harmonique</w>
@@ -186,13 +206,17 @@
       <w>implémente</w>
       <w>implémentent</w>
       <w>inclut</w>
+      <w>indique</w>
       <w>indéfiniment</w>
       <w>initiale</w>
+      <w>initialiser</w>
       <w>integrale</w>
       <w>integrande</w>
       <w>intensités</w>
+      <w>interpreteur</w>
       <w>inverseur</w>
       <w>inverseuse</w>
+      <w>l'acquisition</w>
       <w>l'ajout</w>
       <w>l'ampli</w>
       <w>l'amplificateur</w>
@@ -200,11 +224,15 @@
       <w>l'audio</w>
       <w>l'avons</w>
       <w>l'enregistrement</w>
+      <w>l'ensemble</w>
+      <w>l'entrainement</w>
+      <w>l'entrée</w>
       <w>l'excitation</w>
       <w>l'expérience</w>
       <w>l'implémentation</w>
       <w>l'instance</w>
       <w>l'interpréteur</w>
+      <w>l'on</w>
       <w>l'ordinateur</w>
       <w>l'origine</w>
       <w>l'université</w>
@@ -217,8 +245,10 @@
       <w>liste</w>
       <w>maille</w>
       <w>marche</w>
+      <w>matrice</w>
       <w>matriciel</w>
       <w>maximale</w>
+      <w>meilleur</w>
       <w>membre</w>
       <w>mesure</w>
       <w>mettre</w>
@@ -239,6 +269,7 @@
       <w>obtenir</w>
       <w>opérateurs</w>
       <w>ordre</w>
+      <w>outils</w>
       <w>partie</w>
       <w>permettre</w>
       <w>perte</w>
@@ -248,8 +279,10 @@
       <w>polytechnique</w>
       <w>pouvant</w>
       <w>principale</w>
+      <w>proba</w>
       <w>probabilités</w>
       <w>probablement</w>
+      <w>problème</w>
       <w>prononcez</w>
       <w>précédemment</w>
       <w>prédites</w>
@@ -257,6 +290,7 @@
       <w>présenté</w>
       <w>puis</w>
       <w>qualité</w>
+      <w>quantifié</w>
       <w>quantifiée</w>
       <w>quelles</w>
       <w>rajouter</w>
@@ -265,6 +299,7 @@
       <w>renvoie</w>
       <w>reproductibilité</w>
       <w>reproductible</w>
+      <w>représentent</w>
       <w>reseaux</w>
       <w>respectivement</w>
       <w>retourne</w>
@@ -272,20 +307,28 @@
       <w>rmsprop</w>
       <w>réalité</w>
       <w>récupère</w>
+      <w>réduire</w>
       <w>réelles</w>
       <w>réseau</w>
       <w>résultats</w>
+      <w>s'agit</w>
+      <w>s'améliore</w>
+      <w>s'arrête</w>
       <w>sallen</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
       <w>sauvegardés</w>
       <w>serait</w>
+      <w>seront</w>
       <w>signaux</w>
       <w>simule</w>
+      <w>soit</w>
       <w>sommes</w>
       <w>sonore</w>
       <w>sont</w>
+      <w>spectogramme</w>
       <w>spectrogramme</w>
+      <w>stagne</w>
       <w>statique</w>
       <w>stft</w>
       <w>strictement</w>

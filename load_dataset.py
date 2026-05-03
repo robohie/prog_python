@@ -1,7 +1,10 @@
-# Ce module transforme chaque son (au format wav) en MFCC
-# MFCC=Mel-Frequency Cepstral Coefficients
-# Transformation du son en un spectrogramme qui montre quelles
-# fréquences sont fortes ou faibles à chaque instant
+# Ce module transforme charge les sons de chaque étiquette,
+# pour chaque son (au format wav), on extrait les MFCCs
+# grâce à la fonction extraction du module extraction_mfcc.
+# Ensuite l'on découpe les données en trois groupes :
+# les données d'entrainement, de test et de validation.
+# Grâce à scikit-learn, on transforme les noms des classes
+# en nombre entier pour l'entrainement du modèle.
 
 import os
 import numpy as np
@@ -13,8 +16,8 @@ from extraction_mfcc import extraction
 REPERTOIRE_DES_CLASSES = 'sons/'
 CLASSES = ['marche', 'inverse', 'stop', 'plus',  'moins', 'bruit', 'inconnu']
 MAX_FRAMES = 100 # Nombre fixe des fenêtres temporelles
-RATIO_TEST = 0.15 # La part du jeu des données de test
-RATIO_VALIDATION = 0.15 # La part des données de validation
+RATIO_TEST = 0.2 # La part du jeu des données de test (15%)
+RATIO_VALIDATION = 0.2 # La part des données de validation (15%)
 SEED = 42 # Ce découpage est reproductible
 
 sons, mots = [], []
@@ -41,7 +44,7 @@ for label in CLASSES:
 
     print(f"{label:<10} : {compteur} fichiers chargés")
 
-X = np.array(sons, dtype=np.float32)
+X = np.array(sons, dtype=np.float32) # passe d'une list en un tableau numpy
 print(f"\nDATASET chargé : {X.shape}, dtype={X.dtype}")
 
 # Encoder les étiquettes en entiers
@@ -54,9 +57,9 @@ print(f"Classes (ordre) : {list(label_encoder.classes_)}")
 # Division
 X_temp, X_test, y_temp, y_test, y_int_temp, y_int_test = train_test_split(
     X, y, y_int,
-    test_size=0.2,
+    test_size=RATIO_TEST,
     random_state=SEED,
-    stratify=y_int
+    stratify=y_int # Pour conserver la distribution des classes
 )
 
 ratio_val_sur_restant = RATIO_VALIDATION / (1 - RATIO_TEST)
@@ -70,6 +73,9 @@ X_train, X_val, y_train, y_val, y_int_train, y_int_val = train_test_split(
 NUM_CLASSES = len(label_encoder.classes_)
 CLASSES_ORDRE = list(label_encoder.classes_)
 
-print(f"Entrainement : {X_train.shape}")
+taille_X_train = X_train.shape
+taille_X_val = X_val.shape
+taille_X_test = X_test.shape
+print(f"Entrainement : {taille_X_train}")
 print(f"Validation   : {X_val.shape}")
 print(f"Test         : {X_test.shape}")

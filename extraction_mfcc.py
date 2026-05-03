@@ -1,12 +1,17 @@
-import librosa
+# Ce module contient les outils de transformation des sons en spectogramme Mel
+# On appelle MFCCs (Mel-Frequency Cepstral Coefficients), des nombres qui
+# représentent de façon compacte le contenu fréquentiel d'un son. Ces nombres
+# seront disposés pour créer une matrice, comme une image!
+
+import librosa # gestion des données musicales
 import numpy as np
 
 
 # Constantes d'extraction
-FREQUENCE_ECHANTILLON = 16000
-N_MFCC = 20 # Nombre de caractéristiques extraites par fenêtre (la résolution)
-N_FFT = 512 # Taille de la fenêtre FFT (analyse fréquentielle)
-HOP_LENGTH = 160 # Pas entre fenêtres successives
+FREQUENCE_ECHANTILLON = 16000 # Noté SR dans librosa
+N_MFCC = 13 # Nombre de caractéristiques extraites par fenêtre (la résolution)
+N_FFT = 512 # Taille de la fenêtre FFT en échantillons=int(sr * taille en sec)
+HOP_LENGTH = 160 # Pas entre fenêtres successives (soit SR/sec)
 DUREE = 1 # durée d'un son en seconde
 
 def extraction(chemin_fichier, max_frame=100):
@@ -17,7 +22,7 @@ def extraction(chemin_fichier, max_frame=100):
     """
     # 1. Chargement du fichier
     y, sr = librosa.load(chemin_fichier, sr=FREQUENCE_ECHANTILLON, mono=True)
-    # Vérification : label_encoder fichier est-il vide ?
+    # Vérification : le fichier est-il vide ?
     if not len(y):
         raise ValueError(f"Fichier audio vide : {chemin_fichier}")
 
