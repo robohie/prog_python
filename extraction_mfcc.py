@@ -5,14 +5,14 @@ import librosa # gestion des données musicales
 import numpy as np
 
 # Constantes
-SAMPLE_RATE = 16000
-WINDOW_SIZE_MS = 30 # durée d'une trame
-WINDOW_STRIDE_MS = 20 # décalage entre trames
+SAMPLE_RATE = 16000 # fréquence d'échantillonnage.
+WINDOW_SIZE_ms = 30 # durée d'une trame (ou fenêtre) en milliseconde
+WINDOW_STRIDE_ms = 20 # décalage entre trames en milliseconde
 # Pour une seconde d'audio, le nombre de trames = (1000 - 30)/20 + 1 = 49
 # Dans l'exemple officiel, on génère 49 trames de 40 coefficients Mel.
 FFT_SIZE = 256 # Doit être une puissance de 2 >= WINDOW_SIZE échantillons.
-WINDOW_SIZE_SAMPLES = int(SAMPLE_RATE * WINDOW_SIZE_MS / 1000)
-N_MELS = 40
+WINDOW_SIZE_SAMPLES = int(SAMPLE_RATE * WINDOW_SIZE_ms / 1000) # Échantillons dans une fenêtre.
+N_MELS = 40 # Nombre des coefficients Mel par frame
 N_FFT = 512
 HOP_LENGTH = int(SAMPLE_RATE * 0.020)
 WIN_LENGTH = int(SAMPLE_RATE * 0.030)
