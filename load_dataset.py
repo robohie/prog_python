@@ -3,7 +3,7 @@
 # grâce à la fonction extraction du module extraction_mfcc.
 # Ensuite l'on découpe les données en trois groupes :
 # les données d'entrainement, de test et de validation.
-# Grâce à scikit-learn, on transforme les noms des classes
+# Grâce à Scikit-learn, on transforme les noms des classes
 # en nombre entier pour l'entrainement du modèle.
 
 import os
@@ -15,10 +15,9 @@ from extraction_mfcc import extraction
 
 REPERTOIRE_DES_CLASSES = 'sons/'
 CLASSES = ['marche', 'inverse', 'stop', 'plus',  'moins', 'bruit', 'inconnu']
-MAX_FRAMES = 100 # Nombre fixe des fenêtres temporelles
 RATIO_TEST = 0.2 # La part du jeu des données de test (15%)
 RATIO_VALIDATION = 0.2 # La part des données de validation (15%)
-SEED = 42 # Ce découpage est reproductible
+SEED = 42 # Ce découpage est reproductible.
 
 sons, mots = [], []
 print('CHARGEMENT DU DATASET...')
@@ -35,7 +34,7 @@ for label in CLASSES:
 
         chemin = os.path.join(dossier, fichier)
         try:
-            features = extraction(chemin_fichier=chemin, max_frame=MAX_FRAMES)
+            features = extraction(chemin_fichier=chemin)
             sons.append(features)
             mots.append(label)
             compteur += 1
