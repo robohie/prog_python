@@ -1,0 +1,44 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{Remerciements}{2}{chapter*.1}%
+\contentsline {chapter}{Table des mati\`eres}{3}{chapter*.2}%
+\contentsline {chapter}{Table des figures}{5}{chapter*.5}%
+\contentsline {chapter}{Liste des tableaux}{6}{chapter*.6}%
+\contentsline {chapter}{Liste des sigles et abréviations}{7}{chapter*.7}%
+\contentsline {chapter}{\numberline {1}Introduction}{8}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Présentation du microcontrôleur Arduino Nano 33 BLE Sense Rev2}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Types de microcontrôleurs}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Arduino Nano 33 BLE Sense Rev2}{11}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Conception du modèle deep learning de reconnaissance vocale}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Apprentissage automatique (\textit {Machine Learning})}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Définitions et types de problèmes}{13}{subsection.3.1.1}%
+\contentsline {paragraph}{Classification.}{14}{section*.34}%
+\contentsline {paragraph}{Risque empirique.}{14}{section*.35}%
+\contentsline {subsection}{\numberline {3.1.2}Régression linéaire}{15}{subsection.3.1.2}%
+\contentsline {paragraph}{Équation normale.}{15}{section*.40}%
+\contentsline {subsection}{\numberline {3.1.3}Descente de gradient}{15}{subsection.3.1.3}%
+\contentsline {paragraph}{Types de descente de gradient.}{16}{section*.44}%
+\contentsline {subsection}{\numberline {3.1.4}Courbes d'apprentissage}{16}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Régression polynomiale}{16}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}Généralisation, sous-apprentissage et sur-apprentissage}{16}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Régularisation}{16}{subsection.3.1.7}%
+\contentsline {paragraph}{Régression Ridge (régularisation $\ell _2$).}{16}{section*.46}%
+\contentsline {paragraph}{Régression Lasso (régularisation $\ell _1$).}{17}{section*.47}%
+\contentsline {paragraph}{Régression Elastic Net.}{17}{section*.48}%
+\contentsline {paragraph}{Arrêt précoce (\textit {Early Stopping}).}{17}{section*.49}%
+\contentsline {subsection}{\numberline {3.1.8}Régression logistique}{17}{subsection.3.1.8}%
+\contentsline {paragraph}{Fonction de coût (log-loss / entropie croisée binaire).}{17}{section*.51}%
+\contentsline {paragraph}{Entropie croisée catégorielle.}{18}{section*.53}%
+\contentsline {section}{\numberline {3.2}Réseaux de neurones artificiels}{18}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Introduction aux réseaux de neurones}{18}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Le perceptron}{18}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Réseau de neurones multicouche (DNN)}{18}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}La rétropropagation}{18}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Interface de programmation Keras}{19}{subsection.3.2.5}%
+\contentsline {chapter}{\numberline {4}Analyse du moteur DC à aimant permanent}{22}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conception du pont en H de commande du moteur avec Arduino}{23}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Présentation des résultats des tests du système}{24}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Contraintes et possibilité d'étendre le projet}{25}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusion}{26}{chapter.8}%
+\contentsline {chapter}{\numberline {A}Modules Python utilisés}{27}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Codes du projet}{28}{appendix.B}%
+\contentsline {chapter}{Bibliographie}{29}{appendix*.60}%

@@ -1,0 +1,1065 @@
+\documentclass[a4paper,12pt,twoside]{report}
+%%%%%%%%%%%%%%%%%
+%% PACKAGES
+%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+	citecolor={red},
+	urlcolor={blue},
+	linkcolor={blue},
+	breaklinks={true},
+	pagebackref={true},
+	hyperindex={true},
+	pdfauthor={BOSOLINDO EDHIENGENE Roger}
+}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tocbibind}
+\usepackage{acronym}
+\usepackage{cite}
+
+%%	Maths
+\usepackage{amsfonts,amsmath,amssymb,amsthm,mathrsfs}
+\theoremstyle{definition}
+\newtheorem{defi}{Définition}
+\newtheorem{exemple}{\color{blue}{Exemple}}
+\newtheorem{exo}{}
+\newtheorem{prop}{Proposition}
+\theoremstyle{plain}
+\newtheorem{lemme}{Lemme}
+\newtheorem{thm}{\bsc{Théorème}}
+\newtheorem{coro}{Corollaire}[thm]
+\theoremstyle{remark}
+\newtheorem*{idee}{Idée}
+\newtheorem*{sol}{Solution}
+\newtheorem*{rem}{Remarque}
+\newtheorem*{rems}{Remarques}
+\newtheorem*{propr}{Propriétés}
+\newtheorem*{propri}{Propriété}
+
+%%	Layout
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO,RE]{\leftmark}
+\fancyhead[LE,RO]{\rightmark}
+\cfoot{\thepage}
+
+%%	Figures and Tables
+\usepackage{graphicx}
+\usepackage{tikz,circuitikz,pgf,pgfplots}
+\usepgfplotslibrary{statistics}
+\pgfplotsset{compat=1.17}
+\usepackage{subfig}
+\usepackage{epstopdf}
+\usepackage{pict2e}
+\usepackage{booktabs,multirow,lscape,float}
+\usepackage{siunitx}
+
+%%	Code listings
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{blue!70!black},
+  commentstyle=\itshape\color{gray},
+  stringstyle=\color{orange!80!black},
+  language=Python,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  xleftmargin=1.5em,
+  showstringspaces=false
+}
+
+%% Fallback pour \bsc (small caps)
+\providecommand{\bsc}[1]{\textsc{#1}}
+
+%%%%%%%%%%%%%%%%%
+%% COMMANDS
+%%%%%%%%%%%%%%%%%
+\newcommand{\cplx}[1]{\mathrm{#1}}
+\newcommand{\rv}[1]{\boldsymbol{#1}}
+\newcommand{\cv}[1]{\boldsymbol{\mathrm{#1}}}
+\newcommand{\ub}[1]{\overline{#1}}
+\newcommand{\lb}[1]{\underline{#1}}
+\newcommand{\set}[1]{\mathcal{#1}}
+
+%%	Ensembles
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+%%%%%%%%%%%%%%%%%
+%% OPERATEURS MATH
+%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\rota}{rot}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+
+% Operateurs ML
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+%======================================================
+\begin{document}
+%======================================================
+
+%------------------------
+% PAGE DE TITRE
+%------------------------
+\begin{titlepage}
+	\begin{center}
+		\vspace*{\stretch{0.1}}
+		\textbf{\bsc{Université de Kinshasa}}\\
+		\bsc{Faculté polytechnique}\\
+		\bsc{Département de Génie électrique}\\
+		\vspace*{\stretch{0.1}}
+		\includegraphics[width=0.25\textwidth]{unikin_logo}\\
+		\vspace*{\stretch{1}}
+		Travail de fin de cycle~:\\
+		\vspace*{\stretch{0.1}}
+		\textbf{\large\bsc{Conception et Réalisation d'un Système Électronique
+		de Contrôle Vocal d'un Moteur DC à Aimant Permanent}}\\
+		\vspace*{\stretch{1}}
+		Travail réalisé par\\
+		\vspace*{\stretch{0.1}}
+		\bsc{Roger Bosolindo Edhiengene}\\
+		\vspace*{\stretch{1}}
+		sous la direction de\\
+		\vspace*{\stretch{0.1}}
+		\bsc{}\\
+		\bsc{}\\
+		\vspace*{\stretch{1}}
+		Année 2025-2026
+	\end{center}
+\end{titlepage}
+
+%------------------------
+% REMERCIEMENTS
+%------------------------
+\chapter*{Remerciements}
+\addcontentsline{toc}{chapter}{Remerciements}
+
+% TODO : à compléter
+
+%------------------------
+% TABLES
+%------------------------
+\tableofcontents
+\listoffigures
+\listoftables
+
+%------------------------
+% SIGLES ET ABRÉVIATIONS
+%------------------------
+\chapter*{Liste des sigles et abréviations}
+\addcontentsline{toc}{chapter}{Liste des sigles et abréviations}
+
+\begin{acronym}
+	\acro{AIoT}{Artificial Intelligence of Things}
+	\acro{ML}{Machine Learning (apprentissage automatique)}
+	\acro{TinyML}{Tiny Machine Learning}
+	\acro{DNN}{Deep Neural Network (réseau de neurones profond)}
+	\acro{NN}{Neural Network (réseau de neurones)}
+	\acro{ULS}{Unité Linéaire à Seuil}
+	\acro{ReLU}{Rectified Linear Unit}
+	\acro{SGD}{Stochastic Gradient Descent (descente de gradient stochastique)}
+	\acro{MSE}{Mean Squared Error (erreur quadratique moyenne)}
+	\acro{RMSE}{Root Mean Squared Error}
+	\acro{API}{Application Programming Interface}
+	\acro{DC}{Direct Current (courant continu)}
+	\acro{PWM}{Pulse Width Modulation (modulation de largeur d'impulsion)}
+	\acro{BLE}{Bluetooth Low Energy}
+	\acro{NFC}{Near Field Communication}
+	\acro{ADC}{Analog-to-Digital Converter (convertisseur analogique-numérique)}
+	\acro{GPIO}{General Purpose Input/Output}
+	\acro{CPU}{Central Processing Unit (unité centrale de traitement)}
+	\acro{RAM}{Random Access Memory (mémoire vive)}
+	\acro{EEPROM}{Electrically Erasable Programmable Read-Only Memory}
+	\acro{IDE}{Integrated Development Environment (environnement de développement intégré)}
+	\acro{RISC}{Reduced Instruction Set Computer}
+	\acro{CISC}{Complex Instruction Set Computer}
+	\acro{FPGA}{Field Programmable Gate Array}
+	\acro{PIC}{Peripheral Interface Controller}
+	\acro{ARM}{Advanced RISC Machines}
+	\acro{FPU}{Floating Point Unit (unité de calcul en virgule flottante)}
+	\acro{MEMS}{Micro-Electro-Mechanical Systems (microsystèmes électromécaniques)}
+	\acro{IMU}{Inertial Measurement Unit (centrale inertielle)}
+\end{acronym}
+
+%======================================================
+\chapter{Introduction}
+\label{chap:introduction}
+%======================================================
+
+Pour mon travail de fin de cycle sanctionnant la fin de mon parcours de licence en sciences
+de l'ingénieur, nous avons investi sur un sujet d'actualité~; un sujet qui rassemble
+l'électronique embarquée, l'informatique, les mathématiques ainsi que l'étude des signaux et
+systèmes. Des disciplines que nous avons explorées tout au long de ce voyage, même si certaines
+comme l'électronique n'ont été que récemment assimilées.
+
+Nous parlerons d'un système électronique de contrôle vocal d'un moteur à courant continu à
+aimant permanent. C'est un projet \ac{AIoT}, dans lequel nous utiliserons un modèle
+d'apprentissage automatique conçu à partir d'un réseau de neurones, qui aura pour mission
+d'identifier des mots clés afin de piloter notre petit moteur.
+
+Un tel système peut être scindé en ces sous-systèmes~:
+\begin{itemize}
+	\item le modèle d'apprentissage automatique~;
+	\item la chaîne d'acquisition et de traitement de la voix, qui comprend le
+	      microcontrôleur Arduino~;
+	\item le driver de commande qui relie les systèmes précédents au moteur~;
+	\item le moteur DC à aimant permanent~;
+	\item le système d'alimentation du système total.
+\end{itemize}
+
+Dans la suite, après avoir analysé tous ces sous-systèmes dans les chapitres correspondants,
+nous présenterons le prototype sur un circuit imprimé réalisé sur Eagle, Ki-Cad ou SimulIDE
+en fonction du logiciel disponible.
+
+Il faut également ajouter que nous présentons, en annexe, un ensemble de programmes Python et
+Arduino que nous avons utilisés dans cette conception.
+
+\section*{Outils logiciels}
+
+À part les trois logiciels cités ci-haut, nous avons utilisé, pour la réalisation du réseau
+de neurones et l'entraînement du modèle d'apprentissage automatique, les frameworks TensorFlow
+et Keras disponibles comme modules sous Python. Toujours avec Python, d'autres modules comme
+librosa, sklearn, matplotlib et numpy nous ont été très utiles pour l'acquisition et le
+prétraitement des données d'entraînement, de test et de validation. D'autres logiciels aussi
+comme Arduino \ac{IDE} et PyCharm ont servi soit pour l'édition soit pour la compilation.
+
+\section*{Organisation du document}
+
+Les prochains chapitres sont organisés d'après les sous-systèmes évoqués ci-haut comme suit~:
+
+\begin{description}[leftmargin=2cm, style=nextline]
+	\item[Chapitre~\ref{chap:arduino}] Présentation du microcontrôleur Arduino Nano 33
+	      BLE Sense Rev2, pièce maîtresse du projet.
+	\item[Chapitre~\ref{chap:deeplearning}] Conception du modèle deep learning de
+	      reconnaissance vocale.
+	\item[Chapitre~\ref{chap:moteur}] Analyse du moteur DC à aimant permanent EG-530AD-9B
+	      de Mabuchi Motor.
+	\item[Chapitre~\ref{chap:ponth}] Conception du pont en~H de commande du moteur
+	      avec Arduino.
+	\item[Chapitre~\ref{chap:resultats}] Présentation des résultats des tests du système
+	      et conception du système d'alimentation.
+	\item[Chapitre~\ref{chap:contraintes}] Contraintes, limitations et possibilités
+	      d'étendre le projet.
+	\item[Chapitre~\ref{chap:conclusion}] Conclusion.
+\end{description}
+
+Étant donné que nous ne pouvons pas parler de tout ce que nous avons fait dans ce projet car
+les exigences de la rédaction nous en empêchent, nous avons quand même prévu quelques
+extensions aux annexes et sur internet, à travers mon compte GitHub. Le lien du dépôt
+est~: \url{https://github.com/nobohie/prog-python}.
+
+%======================================================
+\chapter{Présentation du microcontrôleur Arduino Nano 33 BLE Sense Rev2}
+\label{chap:arduino}
+%======================================================
+
+Une unité de microcontrôleur est essentiellement un petit ordinateur sur une puce unique.
+Il est conçu pour gérer des tâches spécifiques au sein d'un système embarqué sans nécessiter
+de système d'exploitation complexe.
+
+Ces circuits intégrés compacts contiennent un c\oe ur de processeur (ou plusieurs), une
+mémoire vive (\ac{RAM}) et une mémoire à lecture seule programmable effaçable
+électriquement (\ac{EEPROM}) pour stocker les programmes personnalisés qui s'exécutent sur
+le microcontrôleur, même lorsque l'unité est déconnectée d'une alimentation. Les
+microcontrôleurs intègrent les périphériques de traitement, de mémoire et d'entrée/sortie
+(E/S), notamment les minuteries, les compteurs et les convertisseurs analogiques-numériques
+(\ac{ADC}), dans une seule unité autonome efficace et économique.
+
+Voici les principaux composants d'un microcontrôleur~:
+\begin{itemize}
+	\item \textbf{Unité centrale de traitement (\ac{CPU})~:} le composant principal
+	      responsable de l'exécution des instructions et du contrôle des opérations.
+	\item \textbf{Mémoire~:} une mémoire volatile (\ac{RAM}) et une mémoire flash non
+	      volatile pour stocker le jeu d'instructions de programmation du microcontrôleur.
+	\item \textbf{Périphériques~:} en fonction de l'application envisagée, il peut
+	      contenir divers composants auxiliaires.
+\end{itemize}
+
+%------------------------------------------------------
+\section{Types de microcontrôleurs}
+%------------------------------------------------------
+
+Les premiers types de microcontrôleurs sont issus des avancées réalisées dans la fabrication
+des microprocesseurs, lorsque les chercheurs ont développé des techniques pour intégrer des
+composants de \ac{CPU}, de mémoire et de périphériques dans des puces uniques. Gary Boone et
+Michael Cochran, ingénieurs chez Texas Instruments, sont connus pour avoir créé le premier
+microcontrôleur en 1971~\cite{ibm_microcontrollers}. Voici quelques-uns des types de
+microcontrôleurs les plus courants~:
+
+\begin{description}
+	\item[\textbf{Microcontrôleurs 8 bits.}] Type de microcontrôleur le plus élémentaire,
+	doté d'un traitement et d'une mémoire limités, généralement utilisés dans les petits
+	appareils tels que les jouets et les télécommandes.
+
+	\item[\textbf{Microcontrôleurs 16 bits.}] Deux fois plus performants que les modèles
+	8~bits, ils sont utilisés pour des applications plus complexes~: dispositifs médicaux,
+	systèmes automobiles et systèmes de contrôle industriel.
+
+	\item[\textbf{Microcontrôleurs 32 bits.}] Il s'agit du type le plus puissant et le
+	plus riche en fonctionnalités. Il est utilisé pour des applications exigeantes, telles
+	que les consoles de jeu, les appareils de divertissement et l'automatisation industrielle
+	haut de gamme.
+
+	\item[\textbf{Microcontrôleurs à jeu d'instructions réduit (\acs{RISC}).}] Ils
+	intègrent une architecture de conception qui simplifie et améliore les opérations en
+	exécutant moins d'instructions de calcul plus rapidement que d'autres méthodologies,
+	telles que l'architecture d'ordinateur à jeu d'instructions complexes (\ac{CISC}).
+
+	\item[\textbf{Microcontrôleurs ARM.}] Ces types de microcontrôleurs intègrent
+	l'architecture \ac{ARM}, y compris le sous-ensemble moderne ARM Cortex, qui renforce
+	les performances et la fiabilité. Ils sont très utilisés dans les appareils mobiles,
+	les systèmes automobiles et les systèmes de contrôle industriels.
+
+	\item[\textbf{Microcontrôleurs PIC.}] Développé par Microchip Technology, le
+	microcontrôleur \ac{PIC} est le plus petit microcontrôleur au monde. On le trouve dans
+	la robotique, l'automatisation domestique et industrielle et les systèmes d'énergies
+	renouvelables.
+
+	\item[\textbf{Microcontrôleurs basés sur \acs{FPGA}.}] Couramment utilisés dans les
+	applications qui nécessitent le traitement de signaux numériques, le traitement vidéo
+	et les réseaux haut débit, ils utilisent des réseaux de portes programmables in situ
+	(\ac{FPGA}), qui peuvent être configurés et reconfigurés au niveau matériel pour obtenir
+	des résultats de traitement hautement polyvalents et personnalisables.
+\end{description}
+
+Dans le cadre de ce projet, nous avons utilisé le microcontrôleur Arduino Nano 33 BLE
+Sense Rev2. Il s'agit d'un microcontrôleur de type \ac{ARM} que nous présentons dans la
+prochaine section.
+
+%------------------------------------------------------
+\section{Arduino Nano 33 BLE Sense Rev2}
+%------------------------------------------------------
+
+Arduino est une plateforme open-source de prototypage électronique fondée en 2005 au
+Politecnico di Ivrea en Italie~\cite{arduino_nano33}. La carte Arduino intègre un
+microcontrôleur programmable, accessible via un \ac{IDE} simplifié basé sur le langage C/C++.
+
+L'Arduino Nano 33 BLE Sense est une carte de développement de format compact
+($45 \times 18$~mm). Elle se distingue de la version «~Nano 33 BLE~» de base par l'ajout
+de neuf capteurs intégrés dont un microphone numérique.
+
+\subsection*{Caractéristiques techniques}
+
+\begin{description}
+	\item[\textbf{Architecture \ac{CPU}~:}] ARM Cortex-M4F (32 bits avec \ac{FPU}).
+	Il s'agit d'un processeur basse consommation caractérisé par un faible nombre de
+	petits logiciels, une faible latence et une unité de calcul en virgule flottante
+	intégrée. L'architecture RISC 32 bits est un membre de la famille ARM Cortex-M et
+	utilise un jeu d'instructions simplifié qui traite les instructions à 32 bits~\cite{arm_cortex}.
+
+	\item[\textbf{Fréquence d'horloge~:}] \SI{64}{MHz}. La fréquence d'horloge dans un
+	microcontrôleur indique deux choses~: la vitesse d'exécution et la synchronisation.
+	Plus la fréquence est élevée, plus la vitesse d'exécution et la synchronisation des
+	composants internes sont rapides. Tous les composants internes font des programmes et
+	s'exécutent à un cadancement de l'horloge.
+
+	\item[\textbf{Mémoire Flash~:}] \SI{1}{MB}.
+
+	\item[\textbf{Mémoire \acs{RAM}~:}] \SI{256}{KB}. Ce modèle veille en permettant
+	aux données d'être maintenues en mémoire. Il n'est pas nécessairement que le modèle
+	maintenant soit un modèle puissant qui la veut~: on peut changer en mémoire.
+
+	\item[\textbf{Connectivité radio~:}] Bluetooth 5.0, \ac{BLE}, \ac{NFC}, 802.15.4.
+
+	\item[\textbf{Nombre de broches \acs{GPIO}~:}] 45. Ce sont des broches à usage
+	général~; leurs fonctions ne sont pas décidées par le matériel logiciel~; elles
+	doivent être décidées une à une ou laisser entrer un signal.
+
+	\item[\textbf{Tensions de fonctionnement~:}] \SI{3.3}{V} et \SI{5}{V}.
+
+	\item[\textbf{\acs{ADC}~:}] 18 bits, disponible sur plusieurs broches, jusqu'à
+	3~canaux.
+
+	\item[\textbf{\acs{PWM}~:}] disponible à la résolution.
+
+	\item[\textbf{Capteurs embarqués~:}] La force de cette carte réside dans ses neuf
+	capteurs intégrés~:
+	\begin{itemize}
+		\item Gyroscope 3D et magnétomètre 3D (\ac{IMU} 9~axes, accéléromètre 3D)~;
+		\item capteurs de température et d'humidité~;
+		\item capteur de pression barométrique, capteurs de proximité~;
+		\item microphone numérique HP34DT05-A.
+	\end{itemize}
+\end{description}
+
+\subsection*{PWM (Pulse Width Modulation)}
+
+Le \ac{PWM} est une technique numérique qui permet de simuler un signal analogique à partir
+d'une sortie numérique. Au lieu de mettre une sortie à \SI{3.3}{V} en continu pour faire
+briller une LED à fond par exemple, le \ac{PWM} va allumer et éteindre cette LED très
+rapidement. Le signal carré généré à une fréquence fixe donne l'illusion d'un niveau
+analogique en faisant varier le rapport cyclique~: le pourcentage du temps où le signal est
+à l'état haut (par rapport à la période).
+
+\subsection*{Le microphone HP34DT05-A}
+\label{subsec:microphone}
+
+Un microphone \ac{MEMS} est fabriqué par des procédés de micro-fabrication semi-conducteurs.
+La membrane mécanique extrêmement fine est gravée dans une membrane constituée de silicium~;
+les variations de pression font varier la capacité électrique qui est ensuite convertie en
+signal numérique. La fréquence d'échantillonnage peut aller jusqu'à \SI{3.95}{MHz}~\cite{hp34dtos}.
+
+Le HP34DT05-A présente une réponse fréquentielle plate de \SI{100}{Hz} à \SI{10}{kHz} avec
+une légère atténuation en dessous de \SI{100}{Hz} et une coupure progressive au-delà de
+\SI{10}{kHz}.
+
+Grâce au microphone numérique intégré à l'Arduino que nous utilisons, toutes les manœuvres
+de filtrage analogique (Butterworth, Tchebychev) et la chaîne d'acquisition ne sont plus à
+considérer.
+
+%======================================================
+\chapter{Conception du modèle deep learning de reconnaissance vocale}
+\label{chap:deeplearning}
+%======================================================
+
+Notre objectif peut à priori se réduire au fonctionnement d'une forme d'intelligence et
+d'émergence dans le domaine du microcontrôleur. Pour atteindre ce but, nous nous pencherons
+vers le domaine de l'intelligence artificielle et de l'émergence, plus connu comme le
+«~\textit{Machine Learning}~».
+
+Étant donné que nous travaillons sur un petit modèle capable de fonctionner sur un
+microcontrôleur tel que Arduino, nous irons vers le «~\textit{Tiny Machine Learning}~»
+(\ac{TinyML} en abrégé). C'est un ensemble des techniques permettant de fonctionner et
+d'exécuter des algorithmes ML sur des microcontrôleurs~\cite{warden2019tinyml}.
+
+Les motifs qui nous poussent à choisir cette approche sont~:
+\begin{itemize}
+	\item \textbf{Autonomie~:} l'absence de connexion internet, nous n'en aurons pas
+	      besoin pour faire tourner le système~;
+	\item \textbf{Latence~:} de l'ordre de quelques millisecondes~;
+	\item \textbf{Consommation~:} vraiment infime en comparaison avec des modèles hébergés
+	      dans des clouds consommant des kilowatts~;
+	\item \textbf{Coût matériel~:} faible, quelques dizaines de dollars~;
+	\item \textbf{Confidentialité~:} les données ne quittent jamais l'appareil ou le
+	      microcontrôleur.
+\end{itemize}
+
+%------------------------------------------------------
+\section{Apprentissage automatique (\textit{Machine Learning})}
+\label{sec:ml}
+%------------------------------------------------------
+
+\subsection{Définitions et types de problèmes}
+\label{subsec:types}
+
+\begin{defi}[Apprentissage automatique~{\cite[p.~2]{mitchell1997}}]
+Un système ML passe en général par deux phases~:
+\begin{enumerate}
+	\item \textbf{Entraînement~:} le système apprend une tâche~$T$ et améliore une mesure
+	      de performance~$P$ à partir d'une expérience~$E$~; il améliore progressivement
+	      la fonction de coût jusqu'à ce qu'elle converge vers un minimum.
+	\item \textbf{Inférence~:} il applique ce qu'il a appris sur de nouvelles données et
+	      effectue ses prédictions.
+\end{enumerate}
+\end{defi}
+
+Quatre types de problèmes que nous pouvons résoudre grâce au \ac{ML}~:
+\begin{enumerate}[label=\arabic*.]
+	\item l'apprentissage supervisé~;
+	\item l'apprentissage non supervisé~;
+	\item l'apprentissage semi-supervisé~;
+	\item l'apprentissage par renforcement.
+\end{enumerate}
+
+\subsubsection*{Apprentissage supervisé}
+
+\begin{defi}[Apprentissage supervisé~{\cite{azencott2022ml}}]
+On suppose qu'on dispose d'un jeu de~$m$ observations~$\{(x^i, y^i)\}_{i=1}^{m}$ dans un
+espace~$X \times Y$. En apprentissage supervisé, on cherche une fonction~$\phi : X \to Y$
+fixe et inconnue telle que les fonctions~$\phi$ obtenues à partir des observations
+d'apprentissage approchent au mieux cette fonction~$\phi$.
+\end{defi}
+
+Notons $\{x^i\}_{i=1,\ldots,m}$ les observations dans un espace~$X$ et $\{y^i\}$ les
+étiquettes dans un espace~$Y$.
+
+\paragraph{Classification.}
+Pour un problème de classification multi-classe (avec~$C$ catégories)~:
+\[
+f(x) = \argmax_{c \in \{1,\ldots,C\}} g_c(x)
+\]
+où $g_c : X \to \R$ est la $c$-ième \emph{fonction de décision}.
+
+\begin{defi}[Frontière et régions de décision]
+Dans le cas d'une classification multi-classe, les régions de décision sont~:
+\[
+R_c = \bigl\{x \in X \mid g_c(x) = \max_k\, g_k(x)\bigr\}.
+\]
+\end{defi}
+
+\begin{defi}[Fonction de décision (classification binaire)]
+On appelle \emph{fonction de décision} la fonction $g : X \to \R$ telle que~:
+\[
+f(x) =
+\begin{cases}
+0 & \text{si } g(x) \leq 0 \\
+1 & \text{si } g(x) > 0
+\end{cases}
+\]
+\end{defi}
+
+\begin{defi}[Une-contre-toutes (\textit{one-vs-rest})]
+L'approche consiste à entraîner un classifieur binaire pour chaque classe~$c$, en utilisant
+les exemples de la classe~$c$ comme exemples positifs et toutes les autres comme exemples
+négatifs.
+\end{defi}
+
+\paragraph{Risque empirique.}
+
+\begin{defi}[Risque empirique]
+Soit $L$ une fonction de perte et $h$ une hypothèse. Le \emph{risque empirique} est~:
+\[
+R_n(h) = \frac{1}{m} \sum_{i=1}^{m} L\!\bigl(h(x^i),\, y^i\bigr).
+\]
+\end{defi}
+
+\begin{defi}[Risque quadratique empirique (\acs{RMSE})]
+\[
+\text{RMSE}(X, h) = \sqrt{\frac{1}{m} \sum_{i=1}^{m}
+\bigl[h(x^{(i)}) - y^{(i)}\bigr]^2}.
+\]
+\end{defi}
+
+\subsubsection*{Apprentissage non supervisé}
+
+\begin{defi}[Apprentissage non supervisé]
+On dispose d'un jeu de données $\{x^i\}_{i=1}^{m}$ non étiquetées dans un espace~$X$~;
+il s'agit d'apprendre une certaine structure de cet espace. Les principaux exemples sont~:
+\begin{itemize}
+	\item le \textit{clustering} (partitionnement) -- identifier des groupes similaires
+	      dans les données~;
+	\item la réduction de dimension -- projection $X \to Z$ où~$\dim Z < \dim X$.
+\end{itemize}
+\end{defi}
+
+\subsubsection*{Apprentissage semi-supervisé}
+
+\begin{defi}[Apprentissage semi-supervisé]
+Il consiste à apprendre à partir de données partiellement étiquetées~: un ensemble de
+données étiquetées et un ensemble de données non étiquetées, partiellement.
+\end{defi}
+
+\subsubsection*{Apprentissage par renforcement}
+
+\begin{defi}[Apprentissage par renforcement]
+Le système (\textit{agent}) interagit avec un environnement et accomplit des actions, qui
+obtient un bon ou mauvais retour. Les applications principales sont les jeux
+(\textit{échecs, go}, etc.) et la robotique.
+\end{defi}
+
+%------------------------------------------------------
+\subsection{Régression linéaire}
+\label{subsec:regression_lineaire}
+%------------------------------------------------------
+
+Un modèle linéaire effectue une prédiction en calculant une somme pondérée des variables
+d'entrée, en y ajoutant un terme constant~:
+\[
+\hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_p x_p
+       = \rv{\theta}^T \cdot \rv{x}
+\]
+où $\theta_0$ est le biais et $\theta_j$ les paramètres du modèle. On représente le jeu de
+données par une matrice de conception~$X \in \R^{m \times p}$~:
+\[
+X =
+\begin{pmatrix}
+x_1^{(1)} & \cdots & x_p^{(1)} \\
+\vdots    &        & \vdots    \\
+x_1^{(m)} & \cdots & x_p^{(m)}
+\end{pmatrix}
+\]
+et les prédictions sont~$\hat{\rv{y}} = X\rv{\theta}$.
+
+\paragraph{Équation normale.}
+
+La valeur de~$\rv{\theta}$ qui minimise le \ac{RMSE} admet une solution analytique~:
+
+\begin{equation}
+\hat{\rv{\theta}} = \bigl(X^T X\bigr)^{-1} X^T \rv{y}
+\label{eq:normal}
+\end{equation}
+
+L'équation~\eqref{eq:normal} est appelée \emph{équation normale}. On peut remarquer que
+cette formule fait tourner une opération matricielle de complexité $\mathcal{O}(p^2)$~;
+elle devient coûteuse pour un grand nombre de variables.
+
+%------------------------------------------------------
+\subsection{Descente de gradient}
+\label{subsec:gradient}
+%------------------------------------------------------
+
+\begin{defi}[Fonction de coût \acs{MSE}]
+\[
+\text{MSE}(\rv{\theta}) = \frac{1}{m}
+\sum_{i=1}^{m}\bigl(\rv{\theta}^T x^{(i)} - y^{(i)}\bigr)^2
+\]
+\end{defi}
+
+\begin{prop}[Gradient de la \acs{MSE}]
+\[
+\nabla_{\rv{\theta}}\,\text{MSE}(\rv{\theta}) =
+\frac{2}{m}\,X^T\!\bigl(X\rv{\theta} - \rv{y}\bigr)
+\]
+\end{prop}
+
+La mise à jour des paramètres à chaque itération~:
+\[
+\rv{\theta} \leftarrow \rv{\theta} - \eta\,\nabla_{\rv{\theta}}\,\text{MSE}(\rv{\theta})
+\]
+où $\eta$ est le \textit{learning rate} (taux d'apprentissage), un hyperparamètre crucial~:
+trop petit, l'algorithme converge lentement~; trop grand, il risque de ne pas converger.
+
+\paragraph{Types de descente de gradient.}
+\begin{description}
+	\item[\textit{Batch gradient descent} (ordinaire)~:] le gradient est calculé sur
+	      l'ensemble des exemples d'entraînement à chaque étape.
+	\item[Descente de gradient stochastique (\acs{SGD})~:] une seule observation choisie
+	      aléatoirement à chaque étape~; plus rapide mais bruité.
+	\item[\textit{Mini-batch gradient descent}~:] compromis~: le gradient est calculé sur
+	      un petit lot aléatoire d'observations.
+\end{description}
+
+%------------------------------------------------------
+\subsection{Courbes d'apprentissage}
+%------------------------------------------------------
+
+Les courbes d'apprentissage représentent graphiquement l'erreur pour l'évaluation du modèle
+en fonction des données d'entraînement et de validation au fil des époques. Elles permettent
+de diagnostiquer le sous-apprentissage et le sur-apprentissage.
+
+%------------------------------------------------------
+\subsection{Régression polynomiale}
+%------------------------------------------------------
+
+Si la complexité des données ne peut se modéliser par un modèle linéaire, on peut enrichir
+les entrées avec des puissances~:
+\[
+\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2 + \cdots + \beta_d x^d + \varepsilon
+\]
+L'entraîner un modèle linéaire sur ces nouvelles variables constitue la régression polynomiale.
+
+%------------------------------------------------------
+\subsection{Généralisation, sous-apprentissage et sur-apprentissage}
+%------------------------------------------------------
+
+\begin{defi}[Généralisation]
+La \emph{généralisation} est la capacité d'un modèle à faire des prédictions correctes sur
+de nouvelles données.
+\end{defi}
+
+\begin{defi}[Sous-apprentissage (\textit{underfitting})]
+On dit d'un modèle qu'il est en \emph{sous-apprentissage} lorsqu'il est trop simple pour
+capturer la structure des données~: ses performances sont insatisfaisantes même sur les
+données d'entraînement.
+\end{defi}
+
+\begin{defi}[Sur-apprentissage (\textit{overfitting})]
+On dit d'un modèle qu'il est en \emph{sur-apprentissage} lorsqu'il est trop complexe et
+s'ajuste au bruit des données d'entraînement~: ses performances sont bonnes sur les données
+d'entraînement mais mauvaises sur les nouvelles données.
+\end{defi}
+
+%------------------------------------------------------
+\subsection{Régularisation}
+\label{subsec:regularisation}
+%------------------------------------------------------
+
+La régularisation ajoute une pénalité à la fonction de coût afin de contrôler la complexité
+du modèle. L'hyperparamètre $\alpha$ contrôle la quantité de régularisation imposée.
+
+\paragraph{Régression Ridge (régularisation $\ell_2$).}
+
+\begin{defi}[Régression Ridge]
+\[
+J(\rv{\theta}) = \text{MSE}(\rv{\theta}) + \frac{\alpha}{m}\sum_{i=1}^{m}\theta_i^2
+\]
+La solution analytique est~:
+\[
+\hat{\rv{\theta}} = \bigl(X^T X + \alpha A\bigr)^{-1} X^T \rv{y}
+\]
+où $A$ est la matrice identité d'ordre $(p+1)$.
+\end{defi}
+
+\paragraph{Régression Lasso (régularisation $\ell_1$).}
+
+\begin{defi}[Régression Lasso]
+\[
+J(\rv{\theta}) = \text{MSE}(\rv{\theta}) + 2\alpha\sum_{i=1}^{m}|\theta_i|
+\]
+Lasso tend à éliminer les poids des variables les moins importantes (parcimonie).
+\end{defi}
+
+\paragraph{Régression Elastic Net.}
+
+\begin{defi}[Régression Elastic Net]
+C'est un compromis entre Ridge et Lasso, avec un paramètre de mélange $\lambda \in [0,1]$~:
+\[
+J(\rv{\theta}) = \text{MSE}(\rv{\theta})
+  + \lambda\,\frac{\alpha}{m}\sum_{i}\theta_i^2
+  + (1-\lambda)\,2\alpha\sum_{i}|\theta_i|
+\]
+\end{defi}
+
+\paragraph{Arrêt précoce (\textit{Early Stopping}).}
+
+Une autre manière de régulariser est d'interrompre l'entraînement lorsque l'erreur de
+validation cesse de diminuer, afin d'éviter le sur-apprentissage.
+
+%------------------------------------------------------
+\subsection{Régression logistique}
+\label{subsec:logistique}
+%------------------------------------------------------
+
+\subsubsection*{Classification binaire}
+
+\begin{defi}[Fonction sigmoïde]
+La régression logistique utilise la fonction sigmoïde pour produire une probabilité~:
+\[
+\sigma(t) = \frac{1}{1 + e^{-t}}, \qquad \sigma(t) \in (0,1)
+\]
+\end{defi}
+
+La prédiction du modèle est~:
+\[
+\hat{p} = \sigma\!\bigl(\rv{\theta}^T \rv{x}\bigr),
+\qquad
+\hat{y} =
+\begin{cases}
+1 & \text{si } \hat{p} \geq 0{,}5 \\
+0 & \text{sinon}
+\end{cases}
+\]
+
+\paragraph{Fonction de coût (log-loss / entropie croisée binaire).}
+
+\[
+c(\rv{\theta}) =
+\begin{cases}
+-\log(\hat{p})   & \text{si } y = 1 \\
+-\log(1-\hat{p}) & \text{si } y = 0
+\end{cases}
+\]
+
+\[
+J(\rv{\theta}) = -\frac{1}{m}\sum_{i=1}^{m}
+\Bigl[
+  y^{(i)}\log\sigma\!\bigl(\rv{\theta}^T x^{(i)}\bigr)
+  + (1-y^{(i)})\log\!\bigl(1 - \sigma(\rv{\theta}^T x^{(i)})\bigr)
+\Bigr]
+\]
+
+\subsubsection*{Classification multi-classe (Softmax)}
+
+Pour avoir un classifieur à plus de deux classes, on utilise la régression Softmax~:
+
+\begin{defi}[Régression Softmax]
+Pour chaque classe~$k$, on calcule un score~:
+\[
+A_k(\rv{x}) = \rv{\Theta}^{(k)T}\rv{x}
+\]
+La probabilité d'appartenance à la classe~$k$ est donnée par la fonction Softmax~:
+\[
+\sigma\!\bigl(A(\rv{x})\bigr)_k
+= \frac{\exp\bigl(A_k(\rv{x})\bigr)}
+       {\displaystyle\sum_{j=1}^{K}\exp\bigl(A_j(\rv{x})\bigr)}
+\]
+La classification est alors~:
+$\hat{y} = \argmax_k\, \sigma\!\bigl(A(\rv{x})\bigr)_k = \argmax_k\, A_k(\rv{x})$.
+\end{defi}
+
+\paragraph{Entropie croisée catégorielle.}
+
+\[
+J(\rv{\Theta}) = -\frac{1}{m}\sum_{i=1}^{m}\sum_{k=1}^{K}
+y_k^{(i)}\log\hat{p}_k^{(i)}
+\]
+
+\[
+\nabla_{\rv{\Theta}^{(k)}}J(\rv{\Theta}) =
+\frac{1}{m}\sum_{i=1}^{m}\bigl(\hat{p}_k^{(i)} - y_k^{(i)}\bigr)\rv{x}^{(i)}
+\]
+
+%------------------------------------------------------
+\section{Réseaux de neurones artificiels}
+\label{sec:nn}
+%------------------------------------------------------
+
+\subsection{Introduction aux réseaux de neurones}
+
+Les réseaux de neurones artificiels existaient déjà il y a bien longtemps. Ils ont été
+décrits pour la première fois en 1943 par le neuro-physiologiste Warren~McCulloch et le
+mathématicien Walter~Pitts~\cite{geron2023deeplearning}. L'intérêt pour ces méthodes
+a connu un regain dans les années 1980 avec l'avènement du connectionnisme et de nouvelles
+architectures.
+
+\subsection{Le perceptron}
+\label{subsec:perceptron}
+
+Inventé en 1957 par Frank Rosenblatt, le perceptron est une architecture de nœud de neurone
+artificiel basée sur un seul neurone appelé «~unité linéaire à seuil~» (\ac{ULS}).
+
+La sortie d'une couche ULS est calculée comme suit~:
+
+\begin{equation}
+h_{W,b}(\rv{x}) = \phi(\rv{x} \cdot W + b)
+\label{eq:perceptron}
+\end{equation}
+
+avec~$\rv{x}$ la matrice des observations, $W$ la matrice des poids, $b$ le vecteur de biais
+(\textit{bias}), $\phi$ la fonction d'activation.
+
+\begin{defi}[Règle d'apprentissage du perceptron]
+\[
+W_{i,j} \leftarrow W_{i,j} + \eta\,(y_i - \hat{y}_i)\cdot x_i
+\]
+où $\eta$ est le taux d'apprentissage.
+\end{defi}
+
+\subsection{Réseau de neurones multicouche (DNN)}
+\label{subsec:dnn}
+
+Un perceptron multicouche (\ac{DNN}) est constitué d'une couche d'entrée, d'une ou plusieurs
+«~couches cachées~» d'unités ULS, et d'une couche de sortie. L'entraînement se fait par la
+méthode de rétropropagation~; le changement d'un modèle ne peut pas les lier~: l'adaptation,
+les couches de normalisation et les couches de déclarations et de sous-classement.
+
+\subsection{La rétropropagation}
+\label{subsec:backprop}
+
+Voici les étapes de l'algorithme de rétropropagation~\cite{geron2023deeplearning}~:
+\begin{enumerate}
+	\item Il traite un mini-lot à la fois (par exemple 39~instances) et répète le traitement
+	      complet plusieurs fois (\textit{époques}).
+	\item Chaque mini-lot est transmis à la première couche du réseau. L'algorithme calcule
+	      la sortie de chaque couche~; le résultat est transmis à la couche suivante.
+	\item Il mesure ensuite l'erreur du réseau à la dernière couche de sortie.
+	\item Il procède ensuite en sens inverse (\textit{passe en arrière})~: en appliquant la
+	      règle de la chaîne, il mesure la contribution de chaque connexion à l'erreur.
+	\item Enfin, il effectue une descente de gradient pour ajuster les poids du réseau.
+\end{enumerate}
+
+\subsection{Interface de programmation Keras}
+\label{subsec:keras}
+
+Keras est un \textit{framework} de haut niveau de TensorFlow pour le
+\textit{deep learning}~\cite{geron2023deeplearning}. Il permet la construction, la
+compilation, l'entraînement, l'évaluation et l'exécution de modèles réseaux.
+
+\subsubsection*{API Séquentielle}
+
+\begin{lstlisting}[language=Python, caption={Modèle séquentiel -- compilation et entraînement}]
+import tensorflow as tf
+
+# Construction d'un modele sequentiel
+model = tf.keras.Sequential([
+    tf.keras.layers.Normalization(),
+    tf.keras.layers.Dense(50, activation='relu'),
+    tf.keras.layers.Dense(50, activation='relu'),
+    tf.keras.layers.Dense(1)
+])
+
+optimigen = tf.keras.optimizers.Adam(learning_rate=1e-3)
+model.compile(loss="mse",
+              optimizer=optimigen,
+              metrics=["RootMeanSquaredError"])
+
+history = model.fit(X_train, y_train,
+                    validation_data=(X_val, y_val),
+                    epochs=90)
+\end{lstlisting}
+
+\subsubsection*{API Fonctionnelle -- Modèle Wide and Deep}
+
+\begin{lstlisting}[language=Python, caption={Modèle Wide and Deep avec l'API fonctionnelle Keras}]
+import tensorflow as tf
+
+class WideAndDeepModel(tf.keras.Model):
+    def __init__(self, units=30, activation='relu', **kwargs):
+        super().__init__(**kwargs)
+        self.norm_layer_wide = tf.keras.layers.Normalization()
+        self.norm_layer_deep = tf.keras.layers.Normalization()
+        self.hidden1 = tf.keras.layers.Dense(units, activation=activation)
+        self.hidden2 = tf.keras.layers.Dense(units, activation=activation)
+        self.main_output  = tf.keras.layers.Dense(1)
+        self.aux_output   = tf.keras.layers.Dense(1)
+
+    def call(self, inputs):
+        input_wide, input_deep = inputs
+        norm_wide   = self.norm_layer_wide(input_wide)
+        norm_deep   = self.norm_layer_deep(input_deep)
+        hidden1     = self.hidden1(norm_deep)
+        hidden2     = self.hidden2(hidden1)
+        concat      = tf.keras.layers.concatenate([norm_wide, hidden2])
+        output      = self.main_output(concat)
+        aux_output  = self.aux_output(hidden2)
+        return output, aux_output
+
+model = WideAndDeepModel(30, name="mon-modele")
+model.compile(loss="mse",
+              optimizer=tf.keras.optimizers.Adam(1e-2),
+              metrics=["RootMeanSquaredError"])
+\end{lstlisting}
+
+\subsubsection*{Couche BatchNormalization}
+
+La couche \lstinline|BatchNormalization| apprend la moyenne et l'écart-type des données
+d'entraînement. Elle normalise chaque entrée de la couche~; les paramètres ne sont pas
+affectés par la descente de gradient.
+
+\begin{lstlisting}[language=Python, caption={Utilisation de la couche BatchNormalization}]
+# Exemple type avec couche de normalisation large
+aux = tf.keras.layers.Normalization()
+aux.adapt(X_train)
+model_layer_wide  = aux
+model_layer_deep  = tf.keras.layers.Normalization()
+model_layer_deep.adapt(X_train)
+\end{lstlisting}
+
+\subsubsection*{Callbacks~: EarlyStopping et ModelCheckpoint}
+
+\begin{lstlisting}[language=Python, caption={Callbacks Keras -- EarlyStopping et ModelCheckpoint}]
+import tensorflow as tf
+
+# Callback personnalise
+class PrintValTrainRatioCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs):
+        ratio = logs["val_loss"] / logs["loss"]
+        print(f"Epoch {epoch}, val/train = {ratio:.3f}")
+
+# EarlyStopping : interrompt si pas d'amelioration pendant 'patience' epoques
+# et restaure les meilleurs poids
+callback_es = tf.keras.callbacks.EarlyStopping(
+    patience=5,
+    restore_best_weights=True
+)
+
+# ModelCheckpoint : sauvegarde le meilleur modele
+callback_mc = tf.keras.callbacks.ModelCheckpoint(
+    "best_model",
+    save_best_only=True
+)
+
+history = model.fit(
+    X_train, y_train,
+    validation_data=(X_val, y_val),
+    epochs=90,
+    callbacks=[callback_es, callback_mc, PrintValTrainRatioCallback()]
+)
+
+# Restauration du meilleur modele
+model = tf.keras.models.load_model("best_model")
+\end{lstlisting}
+
+%======================================================
+\chapter{Analyse du moteur DC à aimant permanent}
+\label{chap:moteur}
+%======================================================
+
+% TODO: Rédiger le contenu de ce chapitre.
+
+Dans le chapitre quatre, nous nous tournons vers le moteur EG-530AD-9B de Mabuchi Motor.
+C'est un moteur que j'ai récupéré dans une ancienne radio Phillips, qui servait à contrôler
+la rotation des disquettes. Nous verrons ses caractéristiques~: courant de démarrage, couple
+de démarrage, tension nominale, ou la vitesse de rotation nominale. Les paramètres
+électriques ($K_t$, $R_a$, $L_a$) seront dérivés à partir des spécifications constructeur.
+
+%======================================================
+\chapter{Conception du pont en H de commande du moteur avec Arduino}
+\label{chap:ponth}
+%======================================================
+
+% TODO: Rédiger le contenu de ce chapitre.
+
+Le chapitre cinq explore la conception d'un pont en~H pour commander le moteur EG-530AD-9B.
+En effet, nous ne pouvons pas alimenter directement le moteur DC par le microcontrôleur~; cela
+lui serait fatal. Afin d'éviter de gâcher le cerveau des opérations, nous séparons le circuit
+de commande et le circuit d'alimentation du moteur~; le driver est la voie à suivre. Le
+circuit utilise quatre MOSFETs (Si7336ADP/Si7137DP).
+
+%======================================================
+\chapter{Présentation des résultats des tests du système}
+\label{chap:resultats}
+%======================================================
+
+% TODO: Rédiger le contenu de ce chapitre.
+
+Dans le sixième chapitre, nous présenterons tous les résultats obtenus des chapitres
+précédents entre autres~: les performances du modèle d'apprentissage automatique ainsi que
+celles de sa version optimisée, le fonctionnement du modèle sur Arduino et les constats sur
+la précision du système en général. Ce chapitre se terminera par la conception du système
+d'alimentation de l'ensemble Arduino, pont en H et moteur DC, afin d'avoir un produit
+autonome qui ne dépend plus de l'alimentation de l'ordinateur.
+
+%======================================================
+\chapter{Contraintes et possibilité d'étendre le projet}
+\label{chap:contraintes}
+%======================================================
+
+% TODO: Rédiger le contenu de ce chapitre.
+
+Le septième chapitre est un chapitre qui fixe les bases pour des prochaines investigations.
+Nous présentons les contraintes et difficultés rencontrées lors de la réalisation du
+projet~; nous parlons aussi des pistes pour étendre le projet à des applications plus
+robustes et exigeantes.
+
+%======================================================
+\chapter{Conclusion}
+\label{chap:conclusion}
+%======================================================
+
+% TODO: Rédiger le contenu de ce chapitre.
+
+Enfin au chapitre huit, c'est la conclusion~; nous évaluons notre parcours pour voir si nos
+objectifs de départ ont été ou non atteints.
+
+%--------------------
+%  ANNEXES
+%--------------------
+\appendix
+
+\chapter{Modules Python utilisés}
+
+Les principaux modules Python utilisés dans ce projet sont les suivants~:
+\begin{itemize}
+	\item \texttt{tensorflow} et \texttt{keras}~: construction et entraînement du réseau
+	      de neurones.
+	\item \texttt{librosa}~: acquisition et analyse audio (extraction de caractéristiques
+	      Mel).
+	\item \texttt{sklearn}~: utilitaires de prétraitement et d'évaluation.
+	\item \texttt{matplotlib}~: visualisation des données et des courbes d'apprentissage.
+	\item \texttt{numpy}~: calcul numérique et manipulation de tableaux.
+\end{itemize}
+
+\chapter{Codes du projet}
+
+Les codes complets (Python et Arduino) sont disponibles sur le dépôt GitHub à
+l'adresse~: \url{https://github.com/nobohie/prog-python}.
+
+%--------------------
+%  BIBLIOGRAPHIE
+%--------------------
+\bibliographystyle{ieeetr}
+\bibliography{rapport_ref}
+
+\end{document}

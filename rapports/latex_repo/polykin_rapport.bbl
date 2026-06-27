@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{glover2015}
+J.~D. Glover, M.~S. Sarma, and T.~J. Overbye, {\em {Power System Analysis and
+  Design}}.
+\newblock Cengage Learning, 5th~ed., 2012.
+
+\bibitem{bingane2018}
+C.~Bingane, M.~F. Anjos, and S.~Le~Digabel, ``{Tight-and-cheap conic relaxation
+  for the AC optimal power flow problem},'' {\em IEEE Transactions on Power
+  Systems}, vol.~33, no.~6, pp.~7181--7188, 2018.
+
+\bibitem{bingane2019a}
+C.~Bingane, M.~F. Anjos, and S.~Le~Digabel, ``{Tight-and-cheap conic relaxation
+  for the optimal reactive power dispatch problem},'' {\em IEEE Transactions on
+  Power Systems}, vol.~34, no.~6, pp.~4684--4693, 2019.
+
+\bibitem{bingane2019b}
+C.~Bingane, {\em Application de l’optimisation conique au probl{\`e}me
+  d’{\'e}coulement de puissance optimal}.
+\newblock PhD thesis, Polytechnique Montr{\'e}al, 2019.
+
+\bibitem{bingane2021}
+C.~Bingane, M.~F. Anjos, and S.~Le~Digabel, ``{CONICOPF: Conic relaxations for
+  AC optimal power flow computations},'' in {\em 2021 IEEE Power \& Energy
+  Society General Meeting (PESGM)}, pp.~1--5, IEEE, 2021.
+
+\bibitem{conicopf}
+C.~Bingane, M.~F. Anjos, and S.~Le~Digabel, ``{CONICOPF: Conic relaxations of
+  the optimal power flow problem}.''
+  \url{https://github.com/cbingane/conicopf}, March 2019.
+
+\end{thebibliography}

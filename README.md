@@ -2,9 +2,9 @@
 
 Description
 -----------
-prog_python est une collection de scripts Python visant à traiter des signaux (acquisition, filtrage, amplification) et à fournir des fonctions de contrôle vocal. Ce dépôt contient les scripts principaux, des tests et des exemples d'utilisation permettant d'expérimenter avec des flux de données analogiques/numériques et des traitements de signaux.
+prog_python est un "repository" conçu pour contenir tous les programmes informatiques codés en python liés à mon travail de fin de cycle(TFC). Ce travail est projet IoT de contrôle vocal d'un moteur DC(à aimant permanent et à balais, type EG- de Mabucchi Motor) que j'ai trouvé dans un vieux poste radio de mon père.
 
-Remarque : ce README a été adapté en fonction des fichiers présents dans le dépôt. Il a été rédigé avec l'aide de GitHub Copilot (@copilot).
+Dans ce projet, nous avons considérer trois grands systèmes qui se communiquent : le microcontrôleur et le modèle TinyML, le circuit de commande qui rélie le microcontrôleur au motor, le moteur et son alimentation. Le microcontrôleur est un arduino nano 33 ble sense rev2 qui comprend neuf capteurs intégrés dont un microphone numérique.
 
 Table des matières
 ------------------
@@ -23,15 +23,6 @@ Contenu du dépôt
 ----------------
 Les fichiers principaux identifiés à la racine du dépôt sont :
 
-- `adc.py`  
-  Script lié à l'acquisition analogique-numérique (ADC) — lecture de données, pré-traitement et/ou interface avec matériel.
-- `human_signal.py`  
-  Traitement de signaux humains.
-
-- `voice_controle.py`  
-  Module/Script de contrôle vocal.
-
-- `test_micro_ampli_filtre_adc.py`.
 
 Prérequis
 ---------

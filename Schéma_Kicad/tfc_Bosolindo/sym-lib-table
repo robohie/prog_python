@@ -1,0 +1,5 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "arduino-library") (type "KiCad") (uri "C:/Users/itel/OneDrive/Desktop/TFC/Schéma_Kicad/arduino-kicad-library-4.2.0-pcm/symbols/arduino-library.kicad_sym") (options "") (descr ""))
+	(lib (name "unikin_logo") (type "KiCad") (uri "C:/Users/itel/OneDrive/Desktop/TFC/Schéma_Kicad/logos_symboles/unikin_logo.kicad_sym") (options "") (descr ""))
+)
