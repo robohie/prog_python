@@ -156,9 +156,9 @@ Remerciements et références
 ```bibtex
 @techreport{robohie2026_tfc,
   title = {Système IoT de contrôle vocal d'un moteur},
-  author = {Roger Bosolo Ndo},
+  author = {Roger Bosolindo},
   year = {2026},
-  institution = {Université / École},
+  institution = {Université de Kinshasa},
   note = {Travail de fin de cycle}
 }
 ```
