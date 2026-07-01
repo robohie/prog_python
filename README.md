@@ -84,34 +84,6 @@ model_q_path = 'models/models_quantifies/my_model_quant.tflite'
 acc_q = verification2(model_q_path, x_test, y_test)
 print(f'Accuracy (quantized model): {acc_q:.2%}')
 ```
-
-Notes et recommandations sur verification_model.py
--------------------------------------------------
-Pendant la relecture du script, j'ai relevé quelques points d'amélioration (non appliqués automatiquement ici) qui rendent l'utilisation plus robuste :
-
-1) Boucle d'itération
-- Le code actuel itère `for value in x_test:` puis utilise `x_test.index(value)` pour récupérer l'étiquette correspondante. Si `x_test` est un numpy array, `list.index` n'existe et la correspondance échouera. Recommandation : itérer avec un index `for i, value in enumerate(x_test):` et utiliser `y_test[i]`.
-
-2) Conversion dtype
-- `value.astype(np.float32)` ne modifie pas `value` en place. Utiliser `value = value.astype(np.float32)` ou caster lors du `set_tensor`.
-
-3) Affichages & f-strings
-- Quelques f-strings utilisent des guillemets doubles imbriqués et des variables mal référencées (ex. réutilisation de `input_zp` pour l'affichage de la sortie). Il faudra corriger ces lignes pour éviter des erreurs de syntaxe et afficher les bons paramètres.
-
-4) Gestion des formes d'entrée
-- Assurez-vous que la forme de chaque entrée correspond à `input_details[0]['shape']`. Il est fréquent de devoir appliquer `np.expand_dims(value, 0)` ou reshaper à `(1, ...)` avant `set_tensor`.
-
-Si vous le souhaitez, je peux proposer et appliquer un correctif (patch) pour `verification_model.py` qui implémente ces améliorations et fournit des logs plus clairs. Voulez‑vous que je :
-- (A) applique uniquement les améliorations au README (comme ici),
-- (B) applique en plus un patch correctif automatique au fichier `verification_model.py`, ou
-- (C) crée une branche avec le patch et une PR pour revue avant fusion ?
-
-Bonnes pratiques et contribution
---------------------------------
-- Documentez, à l'avenir, l'emplacement exact des modèles TFLite finaux (par ex. `models/models_quantifies/your_model.tflite`) afin que les scripts puissent référencer des chemins stables.
-- Ajouter des tests unitaires (ex. dossier `tests/`) qui valident le pipeline de prétraitement et l'inférence sur un petit jeu de données de raison.
-- Si vous ciblez une MCU spécifique, créez une arborescence `firmware/` avec un README (toolchain, flash steps) pour faciliter la reprise par d'autres.
-
 Licence et contact
 ------------------
 - Licence : ajoutez le fichier `LICENSE` si vous souhaitez une licence explicite (ex. MIT).
