@@ -6,165 +6,84 @@
 
 Prog_Python — Système IoT de contrôle vocal pour moteur (Travail de Fin de Cycle)
 
-> README rédigé par GitHub Copilot (@copilot)
+Résumé
+------
+Ce dépôt contient le code, les notebooks et les documents associés au projet de fin de cycle portant sur la conception et l'évaluation d'un système IoT de contrôle vocal pour moteur. Le contenu présent dans le dépôt a été vérifié et la structure suivante reflète l'état actuel des fichiers.
 
-Résumé (Abstract)
------------------
-Ce dépôt contient l'ensemble des codes, notebooks et documents associés au projet de fin de cycle portant sur la conception d'un système IoT de contrôle vocal d'un moteur. Le projet intègre trois sous-systèmes principaux :
+Principaux composants présents dans ce dépôt
+-------------------------------------------
+- Prétraitement et extraction de caractéristiques : `pretraitement/extraction_mfcc.py`
+- Notebooks d'entraînement / exploration : `tfc_train_model_Bosolindo.ipynb` (notebook principal d'entraînement)
+- Vérification / scripts utilitaires : `verification_model.py`
+- Modèles : `models/models_non_quantifies/` et `models/models_quantifies/` (répertoires pour stocker modèles)
+- Code C/C++ généré pour TinyML : `c_model/CNN1_quantifie.cc`
+- Schémas et documents de simulation circuit : `lt_spice/` (fichiers .asc, .asy, PDF)
+- Rapports et figures (incluant le logo) : `rapports/figures/` (ex. `unikin_logo.PNG`, images d'analyse)
+- Fichier de dépendances Python : `requirements.txt`
+- Divers dossiers projet liés au matériel et simulations : `Schéma_Kicad/`, `simul_ide/`, `test_circuit_commande/`
 
-1) un microcontrôleur embarqué exécutant un modèle TinyML pour la détection de commandes vocales,
-2) un circuit de commande reliant le microcontrôleur au moteur (driver / commande de puissance),
-3) le moteur pilote et ses interfaces.
+Remarques importantes sur la cohérence du dépôt
+-----------------------------------------------
+- J'ai enlevé les références à des chemins qui n'existent plus dans ce dépôt (par exemple `src/`, `firmware/`, `tests/`, ou certains scripts cités dans la version précédente du README). Le README précédent mentionnait des fichiers/scripts (`src/adc.py`, `src/human_signal.py`, `src/voice_controle.py`, `tests/test_micro_ampli_filtre_adc.py`) qui ne sont pas présents actuellement ; ils ont été retirés pour éviter toute confusion.
+- Si vous souhaitez réintroduire ces modules (par exemple déplacement depuis un autre emplacement ou réécriture), indiquez où se trouvent les sources et je mettrai le README à jour pour pointer vers les bons fichiers.
 
-Ce document décrit l'architecture, l'installation, l'utilisation, les protocoles d'évaluation et les bonnes pratiques de contribution, afin d'assurer la reproductibilité et la vérifiabilité scientifique du travail.
-
-Contexte et objectifs
----------------------
-Objectifs scientifiques et techniques :
-
-- Concevoir et implémenter un pipeline de traitement audio embarqué capable de reconnaître des commandes vocales simples via TinyML.
-- Développer l'interface matérielle (circuit de commande) pour piloter un moteur DC ou pas-à-pas en toute sécurité.
-- Évaluer la robustesse du système en conditions réelles (bruit, variations d'alimentation, latence).
-- Documenter les méthodes expérimentales, les résultats et les procédures de reproduction permettant une évaluation académique rigoureuse.
-
-Contributions principales
--------------------------
-- Code embarqué et hôte pour acquisition ADC, filtrage et amplification du signal analogique.
-- Pipelines de traitement du signal audio et notebooks d'analyse (prétraitement, extraction de caractéristiques, tests).
-- Intégration d'un modèle TinyML pour classification de commandes vocales et exemples d'export/quantification.
-- Scripts d'évaluation et tests unitaires / fixtures pour simuler l'entrée matérielle.
-- Documentation et artefacts de recherche (notebooks, rapports LaTeX).
-
-Architecture du projet
-----------------------
-- Acquisition et prétraitement : lecture ADC, filtrage, amplification — scripts Python (`src/adc.py`, `src/human_signal.py`).
-- Modélisation : notebooks Jupyter pour exploration et entraînement (réduction de dimension, extraction MFCC, etc.).
-- TinyML : conversion du modèle entraîné en format compatible microcontrôleur (TFLite, quantification).
-- Interface matérielle : code C++ pour microcontrôleur (contrôle PWM, GPIO, protocole de communication série/I2C/SPI) dans `firmware/`.
-- Tests et validation : tests unitaires et scripts de simulation (ex. `tests/test_micro_ampli_filtre_adc.py`).
-
-Contenu du dépôt (aperçu)
--------------------------
-- notebooks/           — Notebooks Jupyter d'analyse et d'entraînement
-- firmware/            — Code C++ pour microcontrôleur (drivers, main)
-- src/                 — Scripts Python (acquisition, traitement, inférence)
-- tests/               — Tests unitaires et fixtures
-- docs/                — Documentation additionnelle et procédés expérimentaux
-- thesis/              — Sources LaTeX du rapport (TFC)
-- rapports/            — Figures et rapports (logo universitaire : `rapports/figures/unikin_logo.PNG`)
-- README.md            — Ce fichier
-- requirements.txt     — Liste des dépendances Python (si présente)
-
-Prérequis
----------
-- Matériel :
-  - Microcontrôleur compatible (ex : STM32, ESP32, ou équivalent) avec ADC et capacités d'exécution TinyML.
-  - Module d'acquisition audio / préamplificateur et moteur (DC / stepper) avec driver de puissance.
-- Logiciel :
-  - Python 3.8+
-  - pip
-  - Outils pour TinyML (TensorFlow, TFLite Converter) installés selon besoins
-  - Outils de compilation pour firmware (toolchain ARM ou ESP-IDF selon la cible)
-- Recommandé : utilisation d'un environnement virtuel (venv, virtualenv, conda)
-
-Installation
-------------
-1. Cloner le dépôt :
-   git clone https://github.com/robohie/prog_python.git
-2. Se placer dans le répertoire :
-   cd prog_python
-3. Créer et activer un environnement virtuel :
-   python -m venv .venv
-   - Linux / macOS : source .venv/bin/activate
-   - Windows : .venv\Scripts\activate
-4. Installer les dépendances Python (si `requirements.txt` est présent) :
-   pip install -r requirements.txt
-5. Pour le firmware, configurer la toolchain et flasher la cible selon les instructions dans `firmware/README.md` (si disponible).
-
-Utilisation (exemples)
-----------------------
-- Acquisition ADC :
-  python src/adc.py --config config/adc_config.yaml
-
-- Traitement du signal / pipelines d'analyse :
-  python src/human_signal.py --input data/raw --output data/processed
-
-- Module de contrôle vocal / inférence (hôte) :
-  python src/voice_controle.py --model models/tflite/command_model.tflite
-
-- Exemples & notebooks :
-  Ouvrir les notebooks dans `notebooks/` pour reproduire les expériences (Jupyter / JupyterLab)
-
-Reproductibilité des expériences
--------------------------------
-Pour reproduire les protocoles expérimentaux décrits dans le TFC :
-
-1. Prétraiter les données en suivant `notebooks/01_preprocessing.ipynb`.
-2. Exécuter l'entraînement avec `notebooks/02_training.ipynb` ou via le script dédié (`src/train.py` si présent).
-3. Exporter et quantifier le modèle en TFLite (notebook ou script d'export dans `src/`).
-4. Flasher le firmware et transférer le modèle quantifié sur la cible.
-5. Lancer les protocoles d'évaluation décrits dans `docs/experiments.md` (séquences de tests, métriques, conditions).
-
-Évaluation et métriques
-----------------------
-Les métriques recommandées :
-- Précision, rappel, F1-score par classe de commande (sur jeu de test).
-- Matrice de confusion pour analyser erreurs inter-classes.
-- Latence d'inférence (ms) mesurée sur cible.
-- Consommation énergétique (mA) en mode veille vs inférence.
-- Robustesse au bruit : tests SNR décroissant.
-
-Tests
------
-- Emplacement des tests : `tests/` (ex. `tests/test_micro_ampli_filtre_adc.py`)
-- Exécuter les tests unitaires :
-  python -m pytest tests/ -q
-- Les tests incluent des fixtures pour simuler entrées matérielles (ADC) et valider les algorithmes de filtrage/amplification.
-
-Bonnes pratiques de développement
---------------------------------
-- Respecter les conventions PEP8 pour les fichiers Python.
-- Documenter les APIs et options de scripts avec argparse (`--help`).
-- Ajouter des tests pour toute nouvelle fonctionnalité ou correction.
-- Versionner les modèles (ex. `models/v1`, `models/v2`) et conserver les notebooks d'entraînement.
-
-Guide de contribution
----------------------
-1. Forkez le dépôt.
-2. Créez une branche descriptive : git checkout -b feat/ma-fonctionnalite
-3. Implémentez et testez vos modifications.
-4. Assurez-vous que les tests passent et que la documentation est à jour.
-5. Ouvrez une Pull Request en décrivant clairement :
-   - L'objectif des changements
-   - Les étapes pour reproduire
-   - L'impact sur l'architecture et les performances
-
-Licence
--------
-Indiquer la licence appropriée (ex. MIT, CC-BY, ou autre). Si aucune licence n'est fournie, le dépôt reste propriétaire. Voir le fichier `LICENSE` pour les détails.
-
-Contact
--------
-- Mainteneur principal : robohie — https://github.com/robohie  
-- Courriel : rogerbosolinndo34@gmail.com
-- Pour toute question, ouvrir une issue sur ce dépôt.
-
-Remerciements et références
----------------------------
-- Ce projet a été réalisé dans le cadre d'un travail de fin de cycle (TFC). Si vous utilisez ou citez ce travail, merci d'indiquer la référence suivante (exemple BibTeX à adapter) :
-
-```bibtex
-@techreport{robohie2026_tfc,
-  title = {Système IoT de contrôle vocal d'un moteur},
-  author = {Roger Bosolindo},
-  year = {2026},
-  institution = {Université de Kinshasa},
-  note = {Travail de fin de cycle}
-}
+Architecture et rôle des répertoires (aperçu)
+---------------------------------------------
+```
+pretraitement/                 extraction MFCC et utilitaires Python
+c_model/                       code C/C++ du modèle quantifié (ex: CNN1_quantifie.cc)
+models/                        dossiers pour modèles non quantifiés et quantifiés
+lt_spice/                      simulations LTspice et documentation associée (PDF, .asc)
+rapports/figures/              figures et images (logo, schémas)
+Schéma_Kicad/                  fichiers de schéma KiCad (s'il y en a)
+simul_ide/                     scripts/simulations pour IDEs ou simulateurs
+test_circuit_commande/         fichiers et notes pour tests du circuit de commande
+tfc_train_model_Bosolindo.ipynb notebook principal d'entraînement/expérimentation
+verification_model.py          script utilitaire pour vérification de modèle
+requirements.txt               dépendances Python listées ici
 ```
 
-Notes finales
--------------
-- Ce README est conçu pour être un document vivant : mettez-le à jour au fur et à mesure de l'évolution du projet (résultats, modèles, scripts).
-- J'ai inséré le logo universitaire disponible dans `rapports/figures/unikin_logo.PNG` et ajouté la mention de rédaction par GitHub Copilot (@copilot).
+Comment exécuter / reproduire les parties actives
+-------------------------------------------------
+1. Cloner le dépôt :
+   git clone https://github.com/robohie/prog_python.git
+   cd prog_python
 
+2. Installer les dépendances Python (recommandé dans un environnement virtuel) :
+   python -m venv .venv
+   # Linux / macOS
+   source .venv/bin/activate
+   # Windows
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+
+3. Notebooks :
+   - Ouvrir `tfc_train_model_Bosolindo.ipynb` dans Jupyter / JupyterLab pour reproduire l'entraînement et l'analyse.
+
+4. Scripts :
+   - Vérifier le modèle (exemple) :
+     python verification_model.py
+
+5. Modèles C/C++ (TinyML) :
+   - Le fichier `c_model/CNN1_quantifie.cc` contient la version C++/C du modèle quantifié ; intégrer/adapter selon la cible embarquée.
+
+Points à compléter / suggestions
+--------------------------------
+- Si vous utilisez une cible microcontrôleur (STM32, ESP32, etc.), ajoutez ici un dossier `firmware/` contenant le code embarqué et des instructions de flash. Actuellement le dépôt ne contient pas de dossier `firmware/`.
+- Si des tests unitaires existent ailleurs, ajoutez un dossier `tests/` et mettez un exemple d'exécution `pytest`.
+- Documenter l'emplacement exact des modèles TFLite quantifiés si vous souhaitez conserver des chemins d'exécution automatiques (ex. `models/models_quantifies/your_model.tflite`).
+
+Licence et contact
+------------------
+- Licence : ajouter/indiquer la licence choisie dans le fichier `LICENSE` (si absent, préciser la licence désirée).
+- Mainteneur : robohie — https://github.com/robohie  
+- Courriel : rogerbosolinndo34@gmail.com
+
+Historique des ajustements
+--------------------------
+- Ce README met à jour les chemins et la description pour refléter les fichiers réellement présents dans le dépôt au moment de la vérification.
+- Références supprimées : `src/` (scripts cités), `firmware/` et `tests/` — ces éléments n'ont pas été trouvés et ont été retirés de la documentation pour éviter des erreurs.
+
+Merci — si vous souhaitez, je peux :
+- appliquer ce README directement sur la branche (préparer le commit),
+- ou bien l'adapter davantage (ajouter exemples détaillés d'usage pour `verification_model.py`, ou checklist pour déployer sur cible embarquée).
