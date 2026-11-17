@@ -1,0 +1,5 @@
+tensorflow~=2.21.0
+librosa~=0.11.0
+numpy~=1.26.4
+matplotlib~=3.10.0
+scikit-learn~=1.8.0
