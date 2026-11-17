@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 2N2222A
+D Trans GP BJT NPN 50V 0.8A 3-Pin TO-18
+K
+F https://www.arrow.com/en/products/2n2222a/microsemi
+$ENDCMP
+#
+#End Doc Library
